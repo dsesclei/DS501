@@ -75,7 +75,7 @@ public class Task_One_Object_Is_Colored : Task {
 		target_group.SetActive (false);
 
 		// set the colors of everything in the group to "not selected"
-		foreach( Renderer r  in target_object.GetComponents<Renderer>() )
+		foreach( Renderer r in target_object.GetComponents<Renderer>() )
 		{
 			foreach( Material m in r.materials )
 				m.color = Color.yellow;	
