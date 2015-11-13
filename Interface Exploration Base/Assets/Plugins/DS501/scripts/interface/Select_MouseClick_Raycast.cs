@@ -2,7 +2,8 @@
 using System.Collections;
 using System;
 
-public class Select_MouseClick_Raycast {
+public class Select_MouseClick_Raycast
+{
 
 	Action<GameObject> onSelect = null;//delegate(GameObject obj) {};
 
@@ -26,5 +27,4 @@ public class Select_MouseClick_Raycast {
 
 		onSelect (selected);
 	}
-
 }

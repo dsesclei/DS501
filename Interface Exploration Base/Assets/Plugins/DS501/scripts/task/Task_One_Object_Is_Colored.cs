@@ -2,7 +2,10 @@
 using System.Collections;
 
 
-public class Task_One_Object_Is_Colored : Task {
+public class Task_One_Object_Is_Colored : Task
+{
+
+	public bool isRunning = false;
 	
 	// objects to select from
 	public GameObject target_group;
@@ -18,8 +21,8 @@ public class Task_One_Object_Is_Colored : Task {
 	// call to start the task
 	public void start () 
 	{
-
 		Debug.Log ("Task Select Object: start()");
+		isRunning = true;
 
 		// select a random item from the group
 		//GameObject[] children = target_group.GetComponents<GameObject>();
@@ -70,8 +73,9 @@ public class Task_One_Object_Is_Colored : Task {
 		//Debug.Log ("Target group active?: " + target_group.activeInHierarchy);
 	}
 
-	public void end () {
-		
+	public void end ()
+	{
+		isRunning = false;
 		target_group.SetActive (false);
 
 		// set the colors of everything in the group to "not selected"
@@ -80,5 +84,12 @@ public class Task_One_Object_Is_Colored : Task {
 			foreach( Material m in r.materials )
 				m.color = Color.yellow;	
 		}
+	}
+
+	public void deselectAll ()
+	{
+		foreach (Renderer r in target_object.GetComponents<Renderer>())
+			foreach (Material m in r.materials)
+				m.color = Color.yellow;	
 	}
 }

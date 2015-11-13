@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections;
 using System;
 
-public class Select_Xbox_Raycast {
+public class Select_Xbox_Raycast
+{
 	
 	Action<GameObject> onSelect = null;
 	
