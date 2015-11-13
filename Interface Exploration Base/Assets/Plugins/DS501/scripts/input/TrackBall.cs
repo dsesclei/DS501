@@ -31,16 +31,12 @@ public class TrackBall : MonoBehaviour
 	{
 		//FIXME update() probably isn't occuring at a constant interval
 		//and velocity / acceleration are both off by a bit.
-		if (position != null)
-			last_position = position;
+		last_position = position;
 		position = Input.mousePosition;
-		if (velocity != null)
-			last_velocity = velocity;
+		last_velocity = velocity;
 		velocity = position - last_position;
-		if (acceleration != null)
-			last_acceleration = acceleration;
-		if (last_velocity != null)
-			acceleration = Math.abs(velocity - last_velocity);
+		last_acceleration = acceleration;
+		acceleration = velocity - last_velocity;
 			
 
 		// check for events
