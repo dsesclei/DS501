@@ -8,7 +8,7 @@ public class TrackBall : MonoBehaviour
 	public static bool     last_left_down    = false;
 	public static bool     last_right_down   = false;
 	public static Vector3  position          = new Vector3();
-	public static Vector3  last_position     = new Vector3(),
+	public static Vector3  last_position     = new Vector3();
 	public static Vector3  velocity          = new Vector3();
 	public static Vector3  last_velocity     = new Vector3();
 	public static Vector3  acceleration      = new Vector3();
