@@ -6,16 +6,20 @@ using System.IO;
 
 public class CSV
 {
-	public static void write_data<T>( String filename, IList<T>array )
+	public static void log<T>(IList<T>array)
 	{
+		string filename = "log.txt";
+		Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+
 		if (!File.Exists (filename)) {
 			File.Create (filename);
 		}
 
 		int i = 0;
-		string[] data = new string[array.Count];
+		string[] data = new string[array.Count + 1];
+		data [0] = unixTimestamp.ToString ();
 		foreach (T item in array) {
-			data[i] = item.ToString ();
+			data[i + 1] = item.ToString ();
 			i++;
 		}
 

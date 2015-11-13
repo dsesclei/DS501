@@ -31,15 +31,12 @@ public class Run_Mouse_Screenspace_Select : MonoBehaviour
 	void onSelect( GameObject selected )
 	{
 		//TODO: we also want to record things here
-		string timestamp = DateTime.Now.ToString ("MM/dd/yyyy h:mm tt");
 		if (selected == task.target_object) {
-			CSV.write_data ("log.txt", new string[] { timestamp, "SelectionTask", "Selection correct" });
-			Debug.Log ("Selection correct!");
+			CSV.log (new string[] { "SelectionTask", "Mouse", "Selection correct" });
 			task.deselectAll ();
 			waitingForReset = true;
 		} else {
-			CSV.write_data ("log.txt", new string[] { timestamp, "SelectionTask", "Selection wrong" });
-			Debug.Log ("Selection Wrong.");
+			CSV.log (new string[] { "SelectionTask", "Mouse", "Selection wrong" });
 		}
 	}
 
