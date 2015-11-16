@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Run_Xbox_Screenspace_Select : MonoBehaviour {
+public class Run_Xbox_Screenspace_Select : Run {
 	
 	public GameObject target_group;
 	
@@ -9,6 +9,9 @@ public class Run_Xbox_Screenspace_Select : MonoBehaviour {
 	private Select_Xbox_Raycast action = null;
 	
 	void Start () {
+
+		base.Start();
+
 		task = new Task_One_Object_Is_Colored (target_group);
 		
 		// build our interface action logic
