@@ -29,12 +29,14 @@ public class Run_Mouse_Screenspace_Select : MonoBehaviour
 		//TODO: we also want to record things here
 		if (selected == task.resetObject) {
 			task.onResetSelected ();
-		} else if (selected == task.target_object) {
-			CSV.log (new string[] { "SelectionTask", "Mouse", "Selection correct" });
-			task.end ();
-			task.start ();
-		} else {
-			CSV.log (new string[] { "SelectionTask", "Mouse", "Selection wrong" });
+		} else if (task.target_object != null) {
+			if (selected == task.target_object) {
+				CSV.log (new string[] { "SelectionTask", "Mouse", "Selection correct" });
+				task.end ();
+				task.start ();
+			} else {
+				CSV.log (new string[] { "SelectionTask", "Mouse", "Selection wrong" });
+			}
 		}
 	}
 }

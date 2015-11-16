@@ -26,16 +26,30 @@ public class Task_One_Object_Is_Colored : Task
 		isRunning = true;
 
 		resetObject.SetActive (true);
-		Renderer resetRenderer = resetObject.GetComponent<Renderer> ();
-		resetRenderer.material.color = Color.red;
+		setColor (resetObject, Color.red);
+
+		// get array of all children
+		// NOTE: this is apparently pretty awkward to do in Unity:
+		// http://answers.unity3d.com/questions/594210/get-all-children-gameobjects.html
+		// http://forum.unity3d.com/threads/hiow-to-get-children-gameobjects-array.142617/
+		// TODO: the second link had a way to add this as a method to GameObject
+		children = new GameObject[target_group.transform.childCount];
+		for ( int i = 0; i < target_group.transform.childCount; i++ ) 
+		{
+			children[i] = target_group.transform.GetChild( i ).gameObject;
+		}
+		
+		foreach (GameObject child in children) 
+		{
+			setColor (child, Color.yellow);
+		}
 
 		target_group.SetActive (true);
 	}
 
 	public void onResetSelected ()
 	{
-		Renderer resetRenderer = resetObject.GetComponent<Renderer> ();
-		resetRenderer.material.color = Color.yellow;
+		setColor (resetObject, Color.yellow);
 
 		// get array of all children
 		// NOTE: this is apparently pretty awkward to do in Unity:
@@ -55,26 +69,12 @@ public class Task_One_Object_Is_Colored : Task
 		// record the selection
 		target_object = children[selected];
 		
-		// set the colors of everything in the group to "not selected"
 		foreach (GameObject child in children) 
 		{
-			foreach( Renderer r in child.GetComponents<Renderer>() )
-			{
-				foreach( Material m in r.materials )
-				{
-					m.color = Color.yellow;	
-				}
-			}
+			setColor (child, Color.yellow);
 		}
 		
-		// set the color of the selected item to "selected"
-		foreach( Renderer r in target_object.GetComponents<Renderer>() )
-		{
-			foreach( Material m in r.materials )
-			{
-				m.color = Color.red;
-			}
-		}
+		setColor (target_object, Color.red);
 	}
 
 	public void end ()
@@ -87,11 +87,17 @@ public class Task_One_Object_Is_Colored : Task
 		resetRenderer.material.color = Color.red;
 		
 		// set the colors of everything in the group to "not selected"
-		foreach( Renderer r in target_object.GetComponents<Renderer>() )
+		setColor (target_object, Color.yellow);
+	}
+
+	
+	private void setColor( GameObject obj, Color color )
+	{
+		foreach( Renderer r in obj.GetComponents<Renderer>() )
 		{
 			foreach( Material m in r.materials )
 			{
-				m.color = Color.yellow;
+				m.color = color;
 			}
 		}
 	}

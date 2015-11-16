@@ -22,18 +22,23 @@ public class Run_Xbox_Screenspace_Select : MonoBehaviour {
 	
 	void onSelect( GameObject selected )
 	{
-		//TODO: we also want to record things here
-		
-		if (selected == task.target_object) {
-			Debug.Log ("Selection correct!");
-			
-			// do whatever happens on correct selection
-			// (for testing, just reset the task)
-			task.end ();
-			task.start ();
-			
-		} else
-			Debug.Log ("Selection Wrong.");
-		
+		if (selected == task.resetObject) {
+			task.onResetSelected ();
+		} else if (task.target_object != null) {
+			if (selected == task.target_object) {
+				CSV.log (new string[] { "SelectionTask", "Mouse", "Selection correct" });
+				task.end ();
+				task.start ();
+			} else {
+				CSV.log (new string[] { "SelectionTask", "Mouse", "Selection wrong" });
+			}
+		}
+	}
+
+	void OnGUI() {
+		if (action != null) {
+			// Total hack, but this creates a box that looks like a crosshair
+			GUI.Box (new Rect (Xbox.position.x, Xbox.position.y, 10, 10), "");
+		}
 	}
 }
