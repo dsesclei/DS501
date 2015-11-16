@@ -4,12 +4,13 @@ using System.Collections;
 public class Run_Xbox_Screenspace_Select : MonoBehaviour {
 	
 	public GameObject target_group;
+	public GameObject resetObject;
 	
 	private Task_One_Object_Is_Colored 	task = null;
 	private Select_Xbox_Raycast action = null;
 	
 	void Start () {
-		task = new Task_One_Object_Is_Colored (target_group);
+		task = new Task_One_Object_Is_Colored (target_group, resetObject);
 		
 		// build our interface action logic
 		action = new Select_Xbox_Raycast ();
@@ -34,12 +35,5 @@ public class Run_Xbox_Screenspace_Select : MonoBehaviour {
 		} else
 			Debug.Log ("Selection Wrong.");
 		
-	}
-	
-	void OnGUI() {
-		if (action != null) {
-			// Total hack, but this creates a box that looks like a crosshair
-			GUI.Box (new Rect (Xbox.position.x, Xbox.position.y, 10, 10), "");
-		}
 	}
 }

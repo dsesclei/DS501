@@ -4,30 +4,38 @@ using System.Collections;
 
 public class Task_One_Object_Is_Colored : Task
 {
-
 	public bool isRunning = false;
-	
+
 	// objects to select from
 	public GameObject target_group;
 	public GameObject target_object;
+	public GameObject resetObject;
 
 	private GameObject[] children;
 
-	public Task_One_Object_Is_Colored( GameObject target_group )
+	public Task_One_Object_Is_Colored( GameObject target_group, GameObject resetObject )
 	{
 		this.target_group = target_group;
+		this.resetObject = resetObject;
 	}
 
 	// call to start the task
-	public void start () 
+	public void start ()
 	{
 		Debug.Log ("Task Select Object: start()");
 		isRunning = true;
 
-		// select a random item from the group
-		//GameObject[] children = target_group.GetComponents<GameObject>();
-		//int num_children = children.Length;
-		//int selected = Mathf.FloorToInt(Random.value * num_children);
+		resetObject.SetActive (true);
+		Renderer resetRenderer = resetObject.GetComponent<Renderer> ();
+		resetRenderer.material.color = Color.red;
+
+		target_group.SetActive (true);
+	}
+
+	public void onResetSelected ()
+	{
+		Renderer resetRenderer = resetObject.GetComponent<Renderer> ();
+		resetRenderer.material.color = Color.yellow;
 
 		// get array of all children
 		// NOTE: this is apparently pretty awkward to do in Unity:
@@ -39,57 +47,52 @@ public class Task_One_Object_Is_Colored : Task
 		{
 			children[i] = target_group.transform.GetChild( i ).gameObject;
 		}
-
+		
 		// select a random item from the group
 		int num_children = children.Length;
 		int selected = Mathf.FloorToInt(Random.value * num_children);
-
+		
 		// record the selection
 		target_object = children[selected];
-
-		//Debug.Log ( "Children: " + children.Length );
-
+		
 		// set the colors of everything in the group to "not selected"
 		foreach (GameObject child in children) 
 		{
-			//Debug.Log ( "Child: " + child );
 			foreach( Renderer r in child.GetComponents<Renderer>() )
 			{
 				foreach( Material m in r.materials )
+				{
 					m.color = Color.yellow;	
+				}
 			}
 		}
-
+		
 		// set the color of the selected item to "selected"
-		foreach( Renderer r  in target_object.GetComponents<Renderer>() )
+		foreach( Renderer r in target_object.GetComponents<Renderer>() )
 		{
 			foreach( Material m in r.materials )
-				m.color = Color.red;	
+			{
+				m.color = Color.red;
+			}
 		}
-
-		//Debug.Log ("Target group: " + target_group);
-		//Debug.Log ("Target group active?: " + target_group.activeInHierarchy);
-		target_group.SetActive (true);
-		//Debug.Log ("Target group active?: " + target_group.activeInHierarchy);
 	}
 
 	public void end ()
 	{
 		isRunning = false;
+		resetObject.SetActive (false);
 		target_group.SetActive (false);
 
+		Renderer resetRenderer = resetObject.GetComponent<Renderer> ();
+		resetRenderer.material.color = Color.red;
+		
 		// set the colors of everything in the group to "not selected"
 		foreach( Renderer r in target_object.GetComponents<Renderer>() )
 		{
 			foreach( Material m in r.materials )
-				m.color = Color.yellow;	
+			{
+				m.color = Color.yellow;
+			}
 		}
-	}
-
-	public void deselectAll ()
-	{
-		foreach (Renderer r in target_object.GetComponents<Renderer>())
-			foreach (Material m in r.materials)
-				m.color = Color.yellow;	
 	}
 }
