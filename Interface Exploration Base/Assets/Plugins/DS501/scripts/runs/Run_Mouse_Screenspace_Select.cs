@@ -20,7 +20,7 @@ public class Run_Mouse_Screenspace_Select : Run
 	{
 		base.Start();
 
-		selections = new Record_Selection( data_file_prefix + "selections", participant_id );
+		selections = new Record_Selection( data_file_prefix + "selections"+".csv", participant_id );
 
 		// build our tasks
 		task = new Task_One_Object_Is_Colored (target_group);
