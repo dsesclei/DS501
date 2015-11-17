@@ -7,10 +7,10 @@ public class Run : MonoBehaviour
 {
 	private Dictionary<String,System.Object> config 
 										= JSON.read( "config.json" );
-	public int participant_id = 1001;
+    protected int participant_id = 1001;
 
-	public string data_dir 			= "./data/";
-	public string data_file_prefix 	= "PREFIX_NOT_SET_";
+	protected string data_dir 			= "./data/";
+    protected string data_file_prefix 	= "PREFIX_NOT_SET_";
 //	private string data_file_name 		= "NAME_NOT_SET";
 //	private string data_file 			=  null;
 

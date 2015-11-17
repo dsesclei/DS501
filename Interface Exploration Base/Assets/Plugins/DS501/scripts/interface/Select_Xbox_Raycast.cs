@@ -21,7 +21,6 @@ public class Select_Xbox_Raycast
 		// Move origin from top left to bottom left
 		Vector3 position = new Vector3 (Xbox.position.x, Screen.height - Xbox.position.y);
 		Ray ray = Camera.main.ScreenPointToRay (position);
-		Debug.Log (Input.mousePosition);
 		GameObject selected = misc.Raycast_Select_Object ( ray );
 		
 		onSelect (selected);
