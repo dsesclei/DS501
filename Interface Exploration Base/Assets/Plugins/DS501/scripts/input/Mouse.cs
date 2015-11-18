@@ -46,10 +46,10 @@ public class Mouse : MonoBehaviour
 		last_position = Input.mousePosition;
 	}
 
-	public static Action onDown_Left  = () => { };//Debug.Log ("Mouse: Left Down" ); };
-	public static Action onDown_Right = () => { };//Debug.Log ("Mouse: Right Down"); };
-	public static Action onUp_Left    = () => { };//Debug.Log ("Mouse: Left Up"   ); };
-	public static Action onUp_Right   = () => { };//Debug.Log ("Mouse: Right Up"  ); };
+	public static Action onDown_Left  = () => { };
+	public static Action onDown_Right = () => { };
+	public static Action onUp_Left    = () => { };
+	public static Action onUp_Right   = () => { };
 	public static Action onMove 	  = () => { };
 
 }
