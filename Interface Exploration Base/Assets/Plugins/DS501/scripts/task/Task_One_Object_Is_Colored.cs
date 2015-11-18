@@ -28,16 +28,7 @@ public class Task_One_Object_Is_Colored : Task
 		resetObject.SetActive (true);
 		setColor (resetObject, Color.red);
 
-		// get array of all children
-		// NOTE: this is apparently pretty awkward to do in Unity:
-		// http://answers.unity3d.com/questions/594210/get-all-children-gameobjects.html
-		// http://forum.unity3d.com/threads/hiow-to-get-children-gameobjects-array.142617/
-		// TODO: the second link had a way to add this as a method to GameObject
-		children = new GameObject[target_group.transform.childCount];
-		for ( int i = 0; i < target_group.transform.childCount; i++ ) 
-		{
-			children[i] = target_group.transform.GetChild( i ).gameObject;
-		}
+		children = misc.get_children_of( target_group );
 		
 		foreach (GameObject child in children) 
 		{
@@ -50,17 +41,8 @@ public class Task_One_Object_Is_Colored : Task
 	public void onResetSelected ()
 	{
 		setColor (resetObject, Color.yellow);
-
-		// get array of all children
-		// NOTE: this is apparently pretty awkward to do in Unity:
-		// http://answers.unity3d.com/questions/594210/get-all-children-gameobjects.html
-		// http://forum.unity3d.com/threads/hiow-to-get-children-gameobjects-array.142617/
-		// TODO: the second link had a way to add this as a method to GameObject
-		children = new GameObject[target_group.transform.childCount];
-		for ( int i = 0; i < target_group.transform.childCount; i++ ) 
-		{
-			children[i] = target_group.transform.GetChild( i ).gameObject;
-		}
+		
+		children = misc.get_children_of( target_group );
 		
 		// select a random item from the group
 		int num_children = children.Length;

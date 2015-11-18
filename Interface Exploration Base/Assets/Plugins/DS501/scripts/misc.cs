@@ -38,4 +38,20 @@ public class misc
                             ).TotalMilliseconds;
         return timestamp.ToString ();
 	}
+
+	public static GameObject[] get_children_of( GameObject parent )
+	{
+		// get array of all children
+		// NOTE: this is apparently pretty awkward to do in Unity:
+		// http://answers.unity3d.com/questions/594210/get-all-children-gameobjects.html
+		// http://forum.unity3d.com/threads/hiow-to-get-children-gameobjects-array.142617/
+		// TODO: the second link had a way to add this as a method to GameObject
+		GameObject[] children = new GameObject[parent.transform.childCount];
+		for ( int i = 0; i < parent.transform.childCount; i++ ) 
+		{
+			children[i] = parent.transform.GetChild( i ).gameObject;
+		}
+
+		return children;
+	}
 }
