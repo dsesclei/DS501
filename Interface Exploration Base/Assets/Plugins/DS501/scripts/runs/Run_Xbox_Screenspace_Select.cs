@@ -8,8 +8,8 @@ public class Run_Xbox_Screenspace_Select : Base_Run_Select_Mouse
     {
 
         //NOTE: set experiment_name before calling base.Start()
-        experiment_name = "mouse_screenspace_select";
-        input_name      = "mouse";
+        experiment_name = "xbox_screenspace_select";
+        input_name      = "xbox_controller";
         interface_name  = "mouse_screenspace";   // we're just moving the
                                                  //  mouse cursor
         task_name       = "select";

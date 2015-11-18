@@ -9,8 +9,8 @@ public class Run_Wiimote_Screenspace_Select : Base_Run_Select_Mouse
     public override void Start()
     {
         //NOTE: set experiment_name before calling base.Start()
-        experiment_name = "mouse_screenspace_select";
-        input_name      = "mouse";
+        experiment_name = "wiimote_screenspace_select";
+        input_name      = "wiimote";
         interface_name  = "mouse_screenspace";   // we're just moving the
                                                  //  mouse cursor
         task_name       = "select";
