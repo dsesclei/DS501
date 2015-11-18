@@ -2,41 +2,33 @@
 using System;
 using System.Collections;
 
-public class Run_Wiimote_Screenspace_Select : MonoBehaviour
+public class Run_Wiimote_Screenspace_Select : Base_Run_Select_Mouse
 {
 
-	public GameObject target_group;
-	public GameObject resetObject;
+    // Use this for initialization
+    public override void Start()
+    {
+        //NOTE: set experiment_name before calling base.Start()
+        experiment_name = "mouse_screenspace_select";
+        input_name      = "mouse";
+        interface_name  = "mouse_screenspace";   // we're just moving the
+                                                 //  mouse cursor
+        task_name       = "select";
 
-	private Task_One_Object_Is_Colored 	task = null;
-	private Select_MouseClick_Raycast selectAction = null;
+        base.Start();
 
-	// Use this for initialization
-	void Start ()
-	{
-		// build our tasks
-		task = new Task_One_Object_Is_Colored (target_group, resetObject);
+        selections = new Record_Selection( data_file_prefix + "selections",
+                                            participant_id,
+                                            input_name,
+                                            interface_name,
+                                            task_name
+                                         );
 
-		// build our interface action logic
-		selectAction = new Select_MouseClick_Raycast ();
-		selectAction.register ( delegate( GameObject selected ) { this.onSelect ( selected ); } );
+        // build our interface action logic
+        selectAction = new Select_MouseClick_Raycast();
+        selectAction.register(this.onSelect);
 
-		task.start ();
-	}
+        task.start();
+    }
 
-	void onSelect( GameObject selected )
-	{
-		//TODO: we also want to record things here
-		if (selected == task.resetObject) {
-			task.onResetSelected ();
-		} else if (task.target_object != null) {
-			if (selected == task.target_object) {
-				CSV.log (new string[] { "SelectionTask", "Wiimote_Mouse", "Selection correct" });
-				task.end ();
-				task.start ();
-			} else {
-				CSV.log (new string[] { "SelectionTask", "Wiimote_Mouse", "Selection wrong" });
-			}
-		}
-	}
 }

@@ -9,12 +9,13 @@ public class Record_Mouse {
 
 	public Record_Mouse( string filename )
 	{
-		this.filename = filename;
+		this.filename = filename + ".csv";
 		
 		// write header
-		CSV.write ( filename, 
-					"timestamp", "position"
-				  );
+		CSV.write ( this.filename, 
+					"timestamp", 
+                    "position_x", "position_y", "position_z"
+                  );
 	}
 
 	public void start()
@@ -29,10 +30,11 @@ public class Record_Mouse {
 	public void record()
 	{
 		Vector3 position = Mouse.position;
-		string timestamp = misc.get_timestamp();
+		string timestamp = misc.get_timestamp_string();
 
 		CSV.write ( filename, 
-					timestamp, position
+					timestamp, 
+                    position.x, position.y, position.z
 				  );
 	}
 

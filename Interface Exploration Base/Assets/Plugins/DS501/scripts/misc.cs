@@ -22,19 +22,20 @@ public class misc
 			return null;
 	}
 
-	public static string get_timestamp( )
+	public static double get_timestamp( )
 	{
-		Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-		return unixTimestamp.ToString ();
-	}
-	public static int get_timestamp_int( )
-	{
-		Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-		return unixTimestamp;
+
+        double timestamp = (DateTime.UtcNow.Subtract(
+                                new DateTime(1970, 1, 1))
+                            ).TotalMilliseconds;
+        return timestamp;
 	}
 	public static string get_timestamp_string( )
 	{
-		Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-		return unixTimestamp.ToString ();
+
+        double timestamp = (DateTime.UtcNow.Subtract(
+                                new DateTime(1970, 1, 1))
+                            ).TotalMilliseconds;
+        return timestamp.ToString ();
 	}
 }
