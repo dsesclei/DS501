@@ -5,7 +5,7 @@ using System.Collections;
 public class Base_Run_Select_Mouse : Run
 {
 
-    public GameObject target_group;
+    public GameObject targetObject;
     public GameObject resetObject;
 
     protected Task_One_Object_Is_Colored task = null;
@@ -22,7 +22,7 @@ public class Base_Run_Select_Mouse : Run
         base.Start();
 
         // build our tasks
-        task = new Task_One_Object_Is_Colored(target_group, resetObject);
+        task = new Task_One_Object_Is_Colored(targetObject, resetObject);
     }
 
     public virtual void onSelect(GameObject selected)
@@ -34,24 +34,24 @@ public class Base_Run_Select_Mouse : Run
             selections.reset_timer();
             target_number++;
         }
-        else if (selected == task.target_object)
+        else if (selected == task.targetObject)
         {
-            Vector3 target_position = task.target_object.transform.position;
+            Vector3 target_position = task.targetObject.transform.position;
             Vector3 start_position  = resetObject.transform.position;
 
             selections.log(target_number, true, target_position, start_position);
-            CSV.log(new string[] { "SelectionTask", "Mouse", "Selection correct" });
-
-            task.end();
-            task.start();
+			task.onTargetSelected();
+			if (task.isOver)
+			{
+				task.end ();
+			}
         }
         else
         {
-            Vector3 target_position = task.target_object.transform.position;
+            Vector3 target_position = task.targetObject.transform.position;
             Vector3 start_position  = resetObject.transform.position;
 
             selections.log(target_number, false, target_position, start_position);
-            CSV.log(new string[] { "SelectionTask", "Mouse", "Selection wrong" });
         }
     }
 }

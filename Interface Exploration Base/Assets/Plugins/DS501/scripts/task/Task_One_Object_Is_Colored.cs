@@ -4,72 +4,65 @@ using System.Collections;
 
 public class Task_One_Object_Is_Colored : Task
 {
-	public bool isRunning = false;
+	public bool isOver = false;
 
 	// objects to select from
-	public GameObject target_group;
-	public GameObject target_object;
+	public GameObject targetObject;
 	public GameObject resetObject;
+	public int numTargets = 9;
+	public int targetsSelected;
 
 	private GameObject[] children;
+	private int[] order;
 
-	public Task_One_Object_Is_Colored( GameObject target_group, GameObject resetObject )
+	public Task_One_Object_Is_Colored( GameObject targetObject, GameObject resetObject )
 	{
-		this.target_group = target_group;
+		this.targetObject = targetObject;
 		this.resetObject = resetObject;
 	}
 
 	// call to start the task
 	public void start ()
 	{
-		//Debug.Log ("Task Select Object: start()");
-		isRunning = true;
+		isOver = false;
+		targetsSelected = 0;
+
+		order = new int[numTargets];
+		for (int i = 0; i < numTargets; i++)
+			order[i] = i;
+		new System.Random ().Shuffle (order);
 
 		resetObject.SetActive (true);
 		setColor (resetObject, Color.red);
 
-		children = misc.get_children_of( target_group );
-		
-		foreach (GameObject child in children) 
-		{
-			setColor (child, Color.yellow);
-		}
+		targetObject.SetActive (false);
+		setColor (targetObject, Color.red);
+	}
 
-		target_group.SetActive (true);
+	public void onTargetSelected ()
+	{
+		targetsSelected++;
+		isOver = targetsSelected >= numTargets;
+		resetObject.SetActive (true);
+		targetObject.SetActive (false);
 	}
 
 	public void onResetSelected ()
 	{
-		setColor (resetObject, Color.yellow);
-		
-		children = misc.get_children_of( target_group );
-		
-		// select a random item from the group
-		int num_children = children.Length;
-		int selected = Mathf.FloorToInt(Random.value * num_children);
-		
-		// record the selection
-		target_object = children[selected];
-		
-		foreach (GameObject child in children) 
-		{
-			setColor (child, Color.yellow);
-		}
-		
-		setColor (target_object, Color.red);
+		Vector3 position = targetObject.gameObject.transform.position;
+		// Would be nice to remove these magic numbers, but probably not worth the time
+		position.x = order[targetsSelected] * 2 - 8;
+		position.y = order[targetsSelected] - 3;
+		targetObject.gameObject.transform.position = position;
+		resetObject.SetActive (false);
+		targetObject.SetActive (true);
 	}
 
 	public void end ()
 	{
-		isRunning = false;
+		isOver = true;
 		resetObject.SetActive (false);
-		target_group.SetActive (false);
-
-		Renderer resetRenderer = resetObject.GetComponent<Renderer> ();
-		resetRenderer.material.color = Color.red;
-		
-		// set the colors of everything in the group to "not selected"
-		setColor (target_object, Color.yellow);
+		targetObject.SetActive (false);
 	}
 
 	
