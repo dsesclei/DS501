@@ -9,7 +9,6 @@ public class Base_Run_Select_Mouse : Run
     public GameObject resetObject;
 
     protected Task_One_Object_Is_Colored task = null;
-    protected Select_MouseClick_Raycast selectAction = null;
 
     protected Record_Selection selections = null;
 

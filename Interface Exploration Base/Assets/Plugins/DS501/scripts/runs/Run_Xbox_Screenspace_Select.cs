@@ -3,6 +3,9 @@ using System.Collections;
 
 public class Run_Xbox_Screenspace_Select : Base_Run_Select_Mouse
 {
+
+    private Select_Xbox_Raycast action = null;
+
     // Use this for initialization
     public override void Start()
     {
@@ -24,8 +27,8 @@ public class Run_Xbox_Screenspace_Select : Base_Run_Select_Mouse
                                          );
 
         // build our interface action logic
-        selectAction = new Select_MouseClick_Raycast();
-        selectAction.register(this.onSelect);
+        action = new Select_Xbox_Raycast();
+        action.register(delegate(GameObject selected) { this.onSelect(selected); });
 
         task.start();
     }
