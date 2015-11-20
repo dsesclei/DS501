@@ -32,4 +32,11 @@ public class Run_Xbox_Screenspace_Select : Base_Run_Select_Mouse
 
         task.start();
     }
+
+	void OnGUI() {
+		if (action != null) {
+			// Total hack, but this creates a box that looks like a crosshair
+			GUI.Box (new Rect (Xbox.position.x, Xbox.position.y, 10, 10), "");
+		}
+	}
 }
