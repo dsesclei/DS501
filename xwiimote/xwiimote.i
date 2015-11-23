@@ -3,4 +3,4 @@
 %{
 #include <xwiimote.h>
 %}
-#include <xwiimote.h>
+%include "/usr/include/xwiimote.h"
