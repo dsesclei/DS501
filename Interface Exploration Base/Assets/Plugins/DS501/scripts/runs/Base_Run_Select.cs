@@ -7,6 +7,7 @@ public class Base_Run_Select_Mouse : Run
 
     public GameObject targetObject;
     public GameObject resetObject;
+	public GameObject cursorObject;
 
     protected Task_One_Object_Is_Colored task = null;
 
@@ -19,6 +20,8 @@ public class Base_Run_Select_Mouse : Run
     {
         //NOTE: set experiment_name before calling base.Start()
         base.Start();
+
+		Cursor.visible = false;
 
         // build our tasks
         task = new Task_One_Object_Is_Colored(targetObject, resetObject);

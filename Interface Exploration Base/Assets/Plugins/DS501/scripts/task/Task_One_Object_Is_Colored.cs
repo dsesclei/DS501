@@ -63,7 +63,7 @@ public class Task_One_Object_Is_Colored : Task
 			positions[offset],
 			positions[offset + 1],
 			positions[offset + 2]
-			);
+		);
 		targetObject.gameObject.transform.position = position;
 		resetObject.SetActive(false);
 		targetObject.SetActive(true);
