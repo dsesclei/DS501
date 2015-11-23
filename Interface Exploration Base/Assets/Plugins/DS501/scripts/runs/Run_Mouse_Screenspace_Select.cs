@@ -4,7 +4,6 @@ using System.Collections;
 
 public class Run_Mouse_Screenspace_Select : Base_Run_Select_Mouse
 {
-
     protected Select_MouseClick_Raycast selectAction = null;
 
 	// Use this for initialization
@@ -32,5 +31,10 @@ public class Run_Mouse_Screenspace_Select : Base_Run_Select_Mouse
 
         task.start();
     }
-    
+	
+	public void Update()
+	{
+		selectAction.onUpdate();
+	}
+
 }
