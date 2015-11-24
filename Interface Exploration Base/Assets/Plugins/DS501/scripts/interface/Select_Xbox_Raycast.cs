@@ -6,7 +6,8 @@ public class Select_Xbox_Raycast
 {
 	
 	Action<GameObject> onSelect = null;
-	
+	private GameObject cursor = GameObject.Find("Cursor");
+
 	public void   register( Action<GameObject> onSelect )	{	this.onSelect += onSelect;	}
 	public void unregister( Action<GameObject> onSelect )	{	this.onSelect -= onSelect;	}
 	
@@ -24,5 +25,16 @@ public class Select_Xbox_Raycast
 		GameObject selected = misc.Raycast_Select_Object ( ray );
 		
 		onSelect (selected);
+	}
+	
+	public void onUpdate()
+	{
+		if (cursor == null) {
+			return;
+		}
+		Vector3 pos = new Vector3(Xbox.position.x, Xbox.position.y, 10);
+		Vector3 worldPos = Camera.main.ScreenToWorldPoint(pos);
+		worldPos.z = -1.5f;
+		cursor.transform.position = worldPos;
 	}
 }
