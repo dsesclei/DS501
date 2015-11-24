@@ -26,14 +26,29 @@ public class Select_MouseClick_Raycast
         RectTransform rect = canvas.GetComponent<RectTransform>();
         RectTransform cursor_rect = cursor.GetComponent<RectTransform>();
         Vector3 new_pos = Mouse.position;
-        new_pos.z = cursor_rect.position.z;
-        //new_pos.x = (new_pos.x * rect.sizeDelta.x) - (0.5f * rect.sizeDelta.x);
-        //new_pos.y = (new_pos.y * rect.sizeDelta.y) - (0.5f * rect.sizeDelta.y);
-        new_pos.x = (new_pos.x) - (0.5f * rect.sizeDelta.x);
-        new_pos.y = (new_pos.y) - (0.5f * rect.sizeDelta.y);
+        int cam_w = Camera.main.pixelWidth;
+        int cam_h = Camera.main.pixelHeight;
+
+        float ratio_w = cam_w / rect.sizeDelta.x;
+        float ratio_h = cam_h / rect.sizeDelta.y;
+
+        new_pos.z = 98;// cursor_rect.position.z;
+        new_pos.x = (new_pos.x * ratio_w) - (0.5f * rect.sizeDelta.x);
+        new_pos.y = (new_pos.y * ratio_h) - (0.5f * rect.sizeDelta.y);
+        //new_pos.y = -new_pos.y;
         Debug.Log("New pos: " + new_pos);
+        Debug.Log("M: " + Mouse.position);
+        Debug.Log("RSD: " + rect.sizeDelta);
         //Debug.Log("RectTransform: " + rect.sizeDelta);
-        cursor_rect.position = new_pos;
+        //new_pos = Camera.main.WorldToScreenPoint(new_pos);
+        //cursor_rect.position = new_pos;
+        cursor.transform.position = new_pos;
+        
+
+        //new_pos.x = ((new_pos.x) - (0.5f * rect.sizeDelta.x)) / rect.sizeDelta.x;
+        //new_pos.y = ((new_pos.y) - (0.5f * rect.sizeDelta.y)) / rect.sizeDelta.y;
+        //cursor_rect.anchoredPosition = new_pos;
+        //Debug.Log("New pos: " + new_pos);
     }
 
 	public void onClick()
