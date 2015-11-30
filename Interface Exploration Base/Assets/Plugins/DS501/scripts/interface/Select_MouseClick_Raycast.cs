@@ -5,8 +5,10 @@ using System;
 public class Select_MouseClick_Raycast
 {
 
-    GameObject cursor = GameObject.Find("Software_Cursor");
-    GameObject canvas = GameObject.Find("Canvas");
+    //GameObject cursor = GameObject.Find("Software_Cursor");
+    //GameObject canvas = GameObject.Find("Canvas");
+
+    Software_Cursor cursor = new Software_Cursor();
 
     Action<GameObject> onSelect = null;//delegate(GameObject obj) {};
 
@@ -23,6 +25,8 @@ public class Select_MouseClick_Raycast
 
     public void onMove()
     {
+        cursor.update_position( Mouse.position );
+
         /*
         RectTransform rect = canvas.GetComponent<RectTransform>();
         RectTransform cursor_rect = cursor.GetComponent<RectTransform>();
@@ -52,6 +56,7 @@ public class Select_MouseClick_Raycast
         //Debug.Log("New pos: " + new_pos);
         */
 
+        /*
         // desired screenspace position
         Vector3 screen_pos;
         screen_pos.x = Mouse.position.x;
@@ -69,6 +74,7 @@ public class Select_MouseClick_Raycast
         Vector3 new_pos = screen_pos_ray.origin + screen_pos_ray.direction * distance;
         cursor.transform.position = new_pos;
         cursor.transform.forward = Camera.main.transform.forward;
+        */ 
     }
 
 	public void onClick()
