@@ -8,6 +8,7 @@ public class LeapMotion {
     private static bool has_been_initialized = false;
     private static HandController hand_controller;
 
+    public static int num_hands = 0;
     private static HandModel left  = null;
     private static HandModel right = null;
 
@@ -36,7 +37,7 @@ public class LeapMotion {
 
 
         HandModel[] hands = hand_controller.GetAllGraphicsHands();
-
+        num_hands = hands.Length;
         //Debug.Log( "Hands detected: " + hands.Length );
 
         //TODO: actually test left / right
@@ -51,7 +52,7 @@ public class LeapMotion {
 
         Vector3 new_pos_right_palm = new Vector3(0, 0, 0);
         if( new_right != null )
-            new_pos_right_palm = new_right.GetPalmPosition();
+            new_pos_right_palm = new_right.GetPalmPosition();//.ToUnityScaled();
 
         //if (new_right != null)
         //    Debug.Log( "Finger: " + new_right.fingers[1].GetTipPosition() );
