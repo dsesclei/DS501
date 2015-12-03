@@ -54,6 +54,17 @@ public class misc
 
 		return children;
 	}
+
+	public static void setColor( GameObject obj, Color color )
+	{
+		foreach( Renderer r in obj.GetComponents<Renderer>() )
+		{
+			foreach( Material m in r.materials )
+			{
+				m.color = color;
+			}
+		}
+	}
 }
 
 // Fisher-Yates Shuffle

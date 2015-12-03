@@ -42,10 +42,10 @@ public class Task_One_Object_Is_Colored : Task
 		new System.Random().Shuffle(order);
 		
 		resetObject.SetActive(true);
-		setColor(resetObject, Color.red);
+		misc.setColor(resetObject, Color.red);
 		
 		targetObject.SetActive(false);
-		setColor(targetObject, Color.red);
+		misc.setColor(targetObject, Color.red);
 	}
 	
 	public void onTargetSelected()
@@ -74,16 +74,5 @@ public class Task_One_Object_Is_Colored : Task
 		isOver = true;
 		resetObject.SetActive(false);
 		targetObject.SetActive(false);
-	}
-	
-	private void setColor( GameObject obj, Color color )
-	{
-		foreach( Renderer r in obj.GetComponents<Renderer>() )
-		{
-			foreach( Material m in r.materials )
-			{
-				m.color = color;
-			}
-		}
 	}
 }
