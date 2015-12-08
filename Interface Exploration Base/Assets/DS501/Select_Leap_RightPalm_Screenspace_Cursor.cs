@@ -6,8 +6,11 @@ using System.Timers;
 public class Select_Leap_RightPalm_Screenspace_Cursor
 {
 
-    GameObject cursor = GameObject.Find("Software_Cursor");
-    GameObject canvas = GameObject.Find("UI Layer/Canvas");
+    //GameObject cursor = GameObject.Find("Software_Cursor");
+    //GameObject canvas = GameObject.Find("UI Layer/Canvas"); 
+
+    Software_Cursor cursor = new Software_Cursor();
+    Camera camera = Camera.main;
 
     Action<GameObject> onSelect = null;
 
@@ -19,15 +22,30 @@ public class Select_Leap_RightPalm_Screenspace_Cursor
         // init the input method; register with relevant listeners
         LeapMotion.init();
         LeapMotion.onCreate_Right += this.onNewHand;
-        LeapMotion.onMove_RightPalm += this.onMove;
+        LeapMotion.onMove_RightPalm += this.update_cursor;
         LeapMotion.onPress_RightPalm += this.onPress;
+
+        HeadPose.init();
+        HeadPose.onMove += this.update_cursor;
+        HeadPose.onRotate += this.update_cursor;
     }
+
+    public void update_cursor()
+    {
+        Vector3 screenspace_position = camera.WorldToScreenPoint(LeapMotion.pos_right_palm);
+        screenspace_position.z = 0;
+        cursor.update_position( screenspace_position );
+
+        Debug.Log("Hands: " + LeapMotion.num_hands + ", PPos: " + LeapMotion.pos_right_palm + ", PPos S: " + screenspace_position);
+    }
+
 
     public void onNewHand()
     {
-        cursor.active = true;
+        //cursor.active = true;
     }
 
+    /*
     public void onMove()
     {
 
@@ -43,12 +61,13 @@ public class Select_Leap_RightPalm_Screenspace_Cursor
         cursor.transform.position = new_pos;
         cursor_rect.position = new_pos;
     }
+    */
 
     public void onPress()
     {
         // delay, to avoid repeated presses
-        if (cursor.active == false)
-            return;
+        //if (cursor.active == false)
+        //    return;
 
         // visual effect
         //cursor.active = false;
