@@ -1,14 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Software_Cursor {
+public class ScreenspaceCursor {
 
-    GameObject cursor = GameObject.Find("Software_Cursor");
-    Camera camera = Camera.main;
-    
-    private float cursor_distance = 10;
+    //public static void init()
+    //{
+    //    cursor = GameObject.Find("Software_Cursor");
+    //    camera = Camera.main;
+    //}
 
-    public void update_position( Vector3 screenspace_position )
+    static GameObject cursor = GameObject.Find("Software_Cursor");
+    static Camera camera = Camera.main;
+
+    static private float cursor_distance = 10;
+
+    static public void update_position( Vector3 screenspace_position )
     {
         
         // desired screenspace position
@@ -23,4 +29,7 @@ public class Software_Cursor {
         cursor.transform.position = new_pos;
         cursor.transform.forward = camera.transform.forward;
     }
+
+    static public void hide()    {  cursor.active = false;  }
+    static public void show()    {  cursor.active = true;   }
 }
