@@ -3,13 +3,13 @@ using System.Collections;
 
 public class ScreenspaceCursor {
 
-    //public static void init()
-    //{
-    //    cursor = GameObject.Find("Software_Cursor");
-    //    camera = Camera.main;
-    //}
+    public static void init()
+    {
+        cursor = GameObject.Find("Screenspace_Cursor");
+        camera = Camera.main;
+    }
 
-    static GameObject cursor    = GameObject.Find("Software_Cursor");
+    static GameObject cursor    = GameObject.Find("Screenspace_Cursor");
     static Camera camera        = Camera.main;
 
     static private float cursor_distance = 10;

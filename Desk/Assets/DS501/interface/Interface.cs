@@ -7,6 +7,8 @@ public interface Interface
     void on();
     void off();
 
+    void update();
+
     Vector2 get_ScreenspacePosition();
     Vector2 get_ScreenspacePosDelta();
 

@@ -23,7 +23,8 @@ public class OnUpdate : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() 
-	{	
+	{
+        //Debug.Log("ON UPDATE: " + registered_updates == null );
 		if (registered_updates != null)
 			registered_updates ();	
 	}

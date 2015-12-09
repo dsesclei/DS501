@@ -43,10 +43,15 @@ public class Mouse : MonoBehaviour
 
 		// update stored state
 		velocity = Input.mousePosition - last_position;
-		if (Input.GetMouseButton (0))	last_left_down  = true;
-		if (Input.GetMouseButton (1))	last_right_down = true;
-		last_position = Input.mousePosition;
-	}
+        if (Input.GetMouseButton(0))    left_down = true;
+        else                            left_down = false;
+		if (Input.GetMouseButton (1))	right_down = true;
+        else                            right_down = false;
+
+        last_position = Input.mousePosition;
+        last_left_down = left_down;
+        last_right_down = right_down;
+    }
 
 	public static Action onDown_Left  = () => { };
 	public static Action onDown_Right = () => { };
