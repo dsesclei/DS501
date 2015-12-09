@@ -1,9 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Run_Desk : MonoBehaviour {
 
-	void Start () {
+    // interfaces
+    Interface_Mouse_Screenspace interface_mouse_screenspace = new Interface_Mouse_Screenspace();
+
+    // minigames
+    List<Minigame> minigames = new List<Minigame>();
+    active_minigame = null;
+
+    void Start () {
 
         // init all inputs
         LeapMotion.init();
@@ -13,11 +21,12 @@ public class Run_Desk : MonoBehaviour {
 
         // init ScreenspaceCursor
         HeadPose.init();
-        HeadPose.onMove     += () => { ScreenspaceCursor.update_cursor(Mouse.position); };
-        HeadPose.onRotate   += () => { ScreenspaceCursor.update_cursor(Mouse.position); };
+        HeadPose.onMove     += () => { ScreenspaceCursor.update_position(Mouse.position); };
+        HeadPose.onRotate   += () => { ScreenspaceCursor.update_position(Mouse.position); };
 
-        // TODO: move this to interface
-        Mouse.onMove += () => { ScreenspaceCursor.update_cursor(Mouse.position); };
+        //build minigames
+
+
     }
 	
 

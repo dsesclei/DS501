@@ -5,9 +5,17 @@ using System.Collections.Generic;
 
 public class Minigame
 {
+    string name         = "NO_NAME_SET";
+    string instructions = "NO_INSTRUCTIONS_SET";
+    MinigameHelper helper;
+
+    public void set_helper(MinigameHelper helper) { this.helper = helper; }
+}
+
+public class MinigameHelper
+{
 
 // Things for children to use
-    string name = "NO_NAME_SET";
 
     public Quaternion  rotation;
     public Vector2     screenspace_position;
@@ -17,18 +25,26 @@ public class Minigame
 
     public bool        success = false;
 
+    public GameObject selected = null;
+
     // listeners
-    public Action onAction = () => { };
-    public Action onMove   = () => { };
-    public Action onRotate = () => { };
+    public             Action onButton = () => { };
+    public             Action onMove   = () => { };
+    public             Action onRotate = () => { };
+    public Action<GameObject> onSelect = (GameObject obj) => { };
+    public Action<GameObject> onDrag   = (GameObject obj) => { };
 
-    public void setName( string name )  { this.name = name;            }
+    
+    /*
+    public void setName( string name )  { this.name = name; }
+    public void setInstructions(string instructions) { this.instructions = instructions; }
 
-    public       bool getAction()       { return action;               }
-    public       bool getClick()        { return action;               }
+    public       bool getButton()       { return action;               }
+    public       bool getClick()        { return getButton();          }
     public    Vector2 getPosition( )    { return screenspace_position; }
     public    Vector2 getVelocity()     { return screenspace_velocity; }
     public Quaternion getRotation()     { return rotation;             }
+    public GameObject getSelected()     { return selected;             }
     public       void theyWon()         { this.success = true;         }
 
     public void go()
@@ -45,12 +61,42 @@ public class Minigame
         Mouse.init();
         update();
     }
+    */
 
     public void show_cursor()    { ScreenspaceCursor.show(); }
 
 
 
 // Things for big papa
+    
+    public MinigameHelper( Minigame minigame, Interface inface )
+    {
+
+        this.minigame = minigame;
+        minigame.set_helper(this);
+        this.inface = inface;
+
+        // add more event monitoring
+        onButton = () => 
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            GameObject selected = misc.Raycast_Select_Object(ray);
+            if (selected != null)
+            {
+                onSelect(selected);
+            }
+        };
+
+        onMove = () =>
+        {
+            if (selected != null && action_held)
+            {
+                onDrag(selected);
+            }
+        };
+
+    }
+
 
     private bool action_processed = false;
     private Quaternion last_rotation;
@@ -59,18 +105,20 @@ public class Minigame
     private GameObject[] pool_of_things = misc.get_children_of(GameObject.Find("ThingsPool"));
     private List<GameObject> created = new List<GameObject>();
 
+    private Interface inface = null; //TODO: pass one in in constructor?
+    private Minigame minigame = null;
+
     public void update()
     {
+
         // update input method
         //TODO: abstract to interface; add interfaces for other input methods
-        Quaternion rot_delta = Quaternion.Euler(Mouse.velocity.y, Mouse.velocity.x, 0);
-        //rotation = rotation * rot_delta;
-        rotation = rot_delta;
+        rotation = inface.get_Rotation();
 
-        screenspace_position = Mouse.position;
-        screenspace_velocity = Mouse.velocity;
+        screenspace_position = inface.get_ScreenspacePosition();
+        screenspace_velocity = inface.get_ScreenspacePosDelta();
 
-        action_held = Mouse.left_down;
+        action_held = inface.get_Button();
 
         // aciton is true only if action was clicked this frame
         if (action_processed == false && action_held == true)
@@ -78,7 +126,7 @@ public class Minigame
             action_processed = true;
             action = true;
 
-            onAction();
+            onButton();
         }
         else
             action = false;
@@ -112,11 +160,14 @@ public class Minigame
         if( success)    Debug.Log("SUCCESS");
         else            Debug.Log("FAILURE");
 
+        //kill circular reference
+        this.minigame = null;
+
         // cue next scene
 
     }
 
-	public GameObject getObject()
+	public GameObject getAnObject()
     {
         // get random object
         int i = Mathf.RoundToInt(UnityEngine.Random.Range(0, pool_of_things.Length));
@@ -125,25 +176,5 @@ public class Minigame
         return obj;
         //TODO: change to just pull and activate / deactiveate if instantiation is slow
     }
-
-    /*
-    private void use_Wiimote()
-    {
-
-    }
-    private void use_Leap()
-    {
-
-    }
-    private void use_Mouse()
-    {
-        Mouse.init();
-        //TODO: set interface
-
-    }
-    private void use_Xbox()
-    {
-
-    }
-    */
+    
 }
