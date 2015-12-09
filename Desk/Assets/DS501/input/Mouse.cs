@@ -6,11 +6,13 @@ public class Mouse : MonoBehaviour
 {
 	//public static GameObject root = null;
 
-	public static bool 	last_left_down  = false,
-		 				last_right_down = false;
-	public static Vector3 	position 		= new Vector3(),
-							last_position 	= new Vector3(),
-							velocity 		= new Vector3();
+	public static bool  left_down            = false,
+                        right_down           = false,
+                        last_left_down       = false,
+		 				last_right_down      = false;
+	public static Vector3 	position 		 = new Vector3(),
+							last_position 	 = new Vector3(),
+							velocity 		 = new Vector3();
 
 	private static bool has_been_initialized = false;
 

@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Run_Desk : MonoBehaviour {
 
-	// Use this for initialization
 	void Start () {
 
         // init all inputs
@@ -12,9 +11,16 @@ public class Run_Desk : MonoBehaviour {
         Mouse.init();
         Xbox.init();
 
-	}
+        // init ScreenspaceCursor
+        HeadPose.init();
+        HeadPose.onMove     += () => { ScreenspaceCursor.update_cursor(Mouse.position); };
+        HeadPose.onRotate   += () => { ScreenspaceCursor.update_cursor(Mouse.position); };
+
+        // TODO: move this to interface
+        Mouse.onMove += () => { ScreenspaceCursor.update_cursor(Mouse.position); };
+    }
 	
-	// Update is called once per frame
+
 	void Update () {
 	    
 
