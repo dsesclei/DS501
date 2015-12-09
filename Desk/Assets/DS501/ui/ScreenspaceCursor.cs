@@ -9,8 +9,8 @@ public class ScreenspaceCursor {
     //    camera = Camera.main;
     //}
 
-    static GameObject cursor = GameObject.Find("Software_Cursor");
-    static Camera camera = Camera.main;
+    static GameObject cursor    = GameObject.Find("Software_Cursor");
+    static Camera camera        = Camera.main;
 
     static private float cursor_distance = 10;
 
@@ -27,7 +27,8 @@ public class ScreenspaceCursor {
         Vector3 new_pos = screen_pos_ray.origin + screen_pos_ray.direction * distance;
 
         cursor.transform.position = new_pos;
-        cursor.transform.forward = camera.transform.forward;
+        cursor.transform.forward  = camera.transform.forward;
+
     }
 
     static public void hide()    {  cursor.active = false;  }
