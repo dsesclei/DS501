@@ -52,7 +52,7 @@ public class Wiimote {
 	{
         WiimoteManager.FindWiimotes(); //TODO: run less often?
         
-        Debug.Log("Wiimotes: " + WiimoteManager.HasWiimote());
+        //Debug.Log("Wiimotes: " + WiimoteManager.HasWiimote());
         if (!WiimoteManager.HasWiimote()) { return; }
 
         //update wiimotes; turn IR on for new wiimotes
@@ -65,7 +65,7 @@ public class Wiimote {
                 haveSeenWiimote[i] = true;
                 //w.SetupIRCamera(IRDataType.BASIC);
             }
-            Debug.Log("  Wiimote " + i + " ext: " + w.current_ext.ToString());
+            //Debug.Log("  Wiimote " + i + " ext: " + w.current_ext.ToString());
         }
 
         // find wiimote (vs balance board, etc)
@@ -110,8 +110,8 @@ public class Wiimote {
         last_button_1 = button_1;
 	}
 
-    public static Action onMove     = () => { Debug.Log("Wiimote pos: " + position); };
-    public static Action onButton_A = () => { Debug.Log("Wiimote button A: " + position); };
+    public static Action onMove     = () => { };//Debug.Log("Wiimote pos: " + position); };
+    public static Action onButton_A = () => { };//Debug.Log("Wiimote button A: " + position); };
     public static Action onButton_1 = () => 
                          { 
                             Debug.Log("Wiimote button 1: init IR tracking");

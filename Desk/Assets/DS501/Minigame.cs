@@ -3,19 +3,21 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Minigame
+public abstract class Minigame
 {
-    string name         = "NO_NAME_SET";
-    string instructions = "NO_INSTRUCTIONS_SET";
-    MinigameHelper helper;
+    public string name         = "NO_NAME_SET";
+    public string instructions = "NO_INSTRUCTIONS_SET";
 
-    public void set_helper(MinigameHelper helper) { this.helper = helper; }
+    public MinigameHelper helper;
+
+    public abstract void update();
+    public abstract void init();
 }
 
 public class MinigameHelper
 {
 
-// Things for children to use
+// Things for Minigames to use
 
     public Quaternion  rotation;
     public Vector2     screenspace_position;
@@ -35,60 +37,48 @@ public class MinigameHelper
     public Action<GameObject> onDrag   = (GameObject obj) => { };
 
     
-    /*
-    public void setName( string name )  { this.name = name; }
-    public void setInstructions(string instructions) { this.instructions = instructions; }
+    public void showCursor()    { ScreenspaceCursor.show(); }
 
-    public       bool getButton()       { return action;               }
-    public       bool getClick()        { return getButton();          }
-    public    Vector2 getPosition( )    { return screenspace_position; }
-    public    Vector2 getVelocity()     { return screenspace_velocity; }
-    public Quaternion getRotation()     { return rotation;             }
-    public GameObject getSelected()     { return selected;             }
-    public       void theyWon()         { this.success = true;         }
-
-    public void go()
+    public GameObject getAnObject()
     {
-        //register update function
-        OnUpdate.register(this.update);
-
-        //start timer
-
-        // zero the stored rotation
-        rotation = new Quaternion();
-
-        // init input
-        Mouse.init();
-        update();
+        // get random object
+        int i = Mathf.RoundToInt(UnityEngine.Random.Range(0, pool_of_things.Length));
+        GameObject obj = GameObject.Instantiate(pool_of_things[i]);
+        created.Add(obj);
+        return obj;
+        //TODO: change to just pull and activate / deactiveate if instantiation is slow?
     }
-    */
-
-    public void show_cursor()    { ScreenspaceCursor.show(); }
 
 
 
-// Things for big papa
-    
+
+// Things for the helper's internals
+
     public MinigameHelper( Minigame minigame, Interface inface )
     {
 
         this.minigame = minigame;
-        minigame.set_helper(this);
+        minigame.helper = this;
+        minigame.init();
+
         this.inface = inface;
+        inface.init();
 
         // add more event monitoring
-        onButton = () => 
+        onButton += () => 
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            GameObject selected = misc.Raycast_Select_Object(ray);
+            selected = misc.Raycast_Select_Object(ray);
+            Debug.Log("Raycast: " + selected);
             if (selected != null)
             {
                 onSelect(selected);
             }
         };
 
-        onMove = () =>
+        onMove += () =>
         {
+            Debug.Log("Drag? " + action_held + " : " + selected);
             if (selected != null && action_held)
             {
                 onDrag(selected);
@@ -107,18 +97,36 @@ public class MinigameHelper
 
     private Interface inface = null; //TODO: pass one in in constructor?
     private Minigame minigame = null;
+    public bool has_ended = false;
+
+
+    public void go()
+    {
+        //register update function
+        OnUpdate.register(this.update);
+
+        //start timer
+
+        // zero the stored rotation
+        rotation = new Quaternion();
+
+        // init input
+        inface.on();
+        //update();
+    }
 
     public void update()
     {
-
         // update input method
-        //TODO: abstract to interface; add interfaces for other input methods
+        inface.update();
         rotation = inface.get_Rotation();
 
         screenspace_position = inface.get_ScreenspacePosition();
         screenspace_velocity = inface.get_ScreenspacePosDelta();
 
         action_held = inface.get_Button();
+
+        //Debug.Log("Actions etc: " + action +" : "+ action_held);
 
         // aciton is true only if action was clicked this frame
         if (action_processed == false && action_held == true)
@@ -131,6 +139,9 @@ public class MinigameHelper
         else
             action = false;
 
+        if (!action_held && !action)
+            action_processed = false;
+
         // fire other events
         if (             last_rotation != rotation             )    onRotate();
         if ( last_screenspace_position != screenspace_position )    onMove();
@@ -138,6 +149,8 @@ public class MinigameHelper
         // remember state
         last_rotation = rotation;
         last_screenspace_position = screenspace_position;
+
+        minigame.update();
     }
 
     public void end()
@@ -149,32 +162,24 @@ public class MinigameHelper
         ScreenspaceCursor.hide();
         //current_interface.disable();
 
-        foreach( GameObject obj in created )
+        foreach ( GameObject obj in created )
         {
             obj.SetActive(false);
             GameObject.Destroy(obj);
         }
 
+        inface.off();
+
         // show success / failure animation
         // TODO: 
-        if( success)    Debug.Log("SUCCESS");
+        if ( success)    Debug.Log("SUCCESS");
         else            Debug.Log("FAILURE");
 
         //kill circular reference
         this.minigame = null;
 
         // cue next scene
-
-    }
-
-	public GameObject getAnObject()
-    {
-        // get random object
-        int i = Mathf.RoundToInt(UnityEngine.Random.Range(0, pool_of_things.Length));
-        GameObject obj = GameObject.Instantiate( pool_of_things[i] );
-        created.Add(obj);
-        return obj;
-        //TODO: change to just pull and activate / deactiveate if instantiation is slow
+        has_ended = true;
     }
     
 }

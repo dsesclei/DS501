@@ -17,7 +17,7 @@ public class LeapMotion {
 
     public static void init()//GameObject hand_controller ) 
     {
-        GameObject root = GameObject.Find("Root");
+        GameObject root = GameObject.Find("root");
         hand_controller = root.GetComponentsInChildren<HandController>()[0];
         //Mouse.root = root;
 
