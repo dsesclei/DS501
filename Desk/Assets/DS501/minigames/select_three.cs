@@ -34,7 +34,6 @@ public class select_three : Minigame {
         }
 
         // move the objects in the x/y plane (we may need to define common boundaries somewhere)
-        //float z_distance = 0.3f;
         float max_x = Camera.main.pixelWidth,
               max_y = Camera.main.pixelHeight;
         foreach( GameObject thing in things )
@@ -43,19 +42,9 @@ public class select_three : Minigame {
                                                     Random.Range(0, max_y),
                                                     z_distance
                                                   );
+            //TODO: sometimes these are in the desk; should not use bottom of screen?
 
             thing.transform.position = misc.ScreenspacePointToPlane( gamePlane, random_screenpos );
-
-            /*
-            // get ray from screenpos
-            Ray ray = Camera.main.ScreenPointToRay(random_screenpos);
-            // cast ray to plane
-            float depth;
-            plane.Raycast(ray, out depth);
-
-            thing.transform.position = Camera.main.ScreenToWorldPoint( ray.GetPoint( depth ) );//random_screenpos );
-            //TODO: this could push out to a plane, not just a set z
-            */
         }
 
         // on select listener
@@ -87,11 +76,6 @@ public class select_three : Minigame {
             screen_pos.x += helper.screenspace_velocity.x;
             screen_pos.y += helper.screenspace_velocity.y;
             selected.transform.position = misc.ScreenspacePointToPlane( gamePlane, screen_pos );
-            //Camera.main.ScreenToWorldPoint(screen_pos);
-
-
-            //thing.transform.position = misc.ScreenspacePointToPlane(plane, random_screenpos);
-            //TODO: this could move within a plane, not just a set z
         };
     }
 
