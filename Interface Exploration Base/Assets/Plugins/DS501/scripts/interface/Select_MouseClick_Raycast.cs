@@ -4,17 +4,30 @@ using System;
 
 public class Select_MouseClick_Raycast
 {
-	Action<GameObject> onSelect = null;//delegate(GameObject obj) {};
+    Software_Cursor cursor = new Software_Cursor();
+
+    Action<GameObject> onSelect = null;//delegate(GameObject obj) {};
+
 	public void   register( Action<GameObject> onSelect )	{	this.onSelect += onSelect;	}
 	public void unregister( Action<GameObject> onSelect )	{	this.onSelect -= onSelect;	}
 	private GameObject cursor = GameObject.Find("Cursor");
 
 	public Select_MouseClick_Raycast()
 	{
-		// init the input method; register with relevant listeners
-		Mouse.init ();
+        // init the input method; register with relevant listeners
+        Mouse.init ();
 		Mouse.onDown_Left += delegate() { this.onClick(); };
+        Mouse.onMove += this.update_cursor;
+
+        HeadPose.init();
+        HeadPose.onMove   += this.update_cursor;
+        HeadPose.onRotate += this.update_cursor;
 	}
+
+    public void update_cursor()
+    {
+        cursor.update_position( Mouse.position );
+    }
 
 	public void onClick()
 	{

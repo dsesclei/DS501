@@ -2,3 +2,6 @@ tags
 /Interface Exploration Base/ProjectSettings/ProjectSettings.asset
 /Interface Exploration Base/ProjectSettings/ProjectVersion.txt
 /Interface Exploration Base/data/*.csv
+/Interface Exploration Base/test_Data
+/R_playground/.Rproj.user
+/Interface Exploration Base/*.exe
