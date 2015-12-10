@@ -22,9 +22,11 @@ public class ScreenspaceCursor {
 
         // project sceenspace position onto canvas plane
         Ray screen_pos_ray = camera.ScreenPointToRay(screen_pos);
+
         float distance = cursor_distance;
 
-        Vector3 new_pos = screen_pos_ray.origin + screen_pos_ray.direction * distance;
+        Vector3 new_pos = screen_pos_ray.GetPoint(distance);
+
 
         cursor.transform.position = new_pos;
         cursor.transform.forward  = camera.transform.forward;

@@ -3,16 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Run_Desk : MonoBehaviour {
+    
+    protected List<MinigameHelper> minigames = new List<MinigameHelper>();
+    protected MinigameHelper active_minigame = null;
+    protected int active_minigame_index = -1;
+
+
+    private GameObject[] pool_of_things = null;
 
     // interfaces
-    Interface_Mouse_Screenspace interface_mouse_screenspace = new Interface_Mouse_Screenspace();
+    protected Interface_Mouse_Screenspace interface_mouse_screenspace = new Interface_Mouse_Screenspace();
 
-    // minigames
-    List<MinigameHelper> minigames = new List<MinigameHelper>();
-    MinigameHelper active_minigame = null;
-    int active_minigame_index = -1;
-
-    void Start () {
+    public virtual void Start()
+    {
+        // get things pool
+        GameObject pool_root = GameObject.Find("ThingsPool");
+        pool_of_things = misc.get_children_of( pool_root );
+        pool_root.SetActive( false );
 
         // init all inputs
         LeapMotion.init();
@@ -23,18 +30,28 @@ public class Run_Desk : MonoBehaviour {
         // init ScreenspaceCursor
         ScreenspaceCursor.init();
         HeadPose.init();
-        HeadPose.onMove     += () => { ScreenspaceCursor.update_position(Mouse.position); };
-        HeadPose.onRotate   += () => { ScreenspaceCursor.update_position(Mouse.position); };
+        HeadPose.onMove   += () => { ScreenspaceCursor.update_position(Mouse.position); };
+        HeadPose.onRotate += () => { ScreenspaceCursor.update_position(Mouse.position); };
 
-        //build minigames
-        minigames.Add( new MinigameHelper( new select_three(), interface_mouse_screenspace ) );
-
+        MakeMinigames();
     }
-	
 
-	void Update () {
-	    
-        if( active_minigame == null || active_minigame.has_ended )
+
+    public virtual void MakeMinigames()
+    {
+        AddMinigame( new select_three() );
+    }
+
+    public virtual void AddMinigame( Minigame game, Interface inface = null )
+    {
+        if (inface == null) inface = interface_mouse_screenspace;
+        minigames.Add(new MinigameHelper(   game, inface, pool_of_things  ));
+    }
+
+    public virtual void Update()
+    {
+
+        if (active_minigame == null || active_minigame.has_ended)
         {
             active_minigame_index++;
             active_minigame = minigames[active_minigame_index];
@@ -42,6 +59,6 @@ public class Run_Desk : MonoBehaviour {
             active_minigame.go();
         }
 
-	}
+    }
 
 }

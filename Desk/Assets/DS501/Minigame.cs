@@ -62,8 +62,9 @@ public class MinigameHelper
 
 // Things for the helper's internals
 
-    public MinigameHelper( Minigame minigame, Interface inface )
+    public MinigameHelper( Minigame minigame, Interface inface, GameObject[] pool_of_things )
     {
+        this.pool_of_things = pool_of_things;
 
         this.minigame = minigame;
         minigame.helper = this;
@@ -72,6 +73,7 @@ public class MinigameHelper
         this.inface = inface;
         inface.init();
 
+
         //gamePlane = new Plane( new Vector3( 0,0,1 ), 0.3f );
 
         // add more event monitoring
@@ -79,7 +81,7 @@ public class MinigameHelper
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             selected = misc.Raycast_Select_Object(ray);
-            Debug.Log("Raycast: " + selected);
+            //Debug.Log("Raycast: " + selected);
             if (selected != null)
             {
                 onSelect(selected);
@@ -88,7 +90,7 @@ public class MinigameHelper
 
         onMove += () =>
         {
-            Debug.Log("Drag? " + action_held + " : " + selected);
+            //Debug.Log("Drag? " + action_held + " : " + selected);
             if (selected != null && action_held)
             {
                 onDrag(selected);
@@ -102,7 +104,7 @@ public class MinigameHelper
     private Quaternion last_rotation;
     private Vector2 last_screenspace_position;
 
-    private GameObject[] pool_of_things = misc.get_children_of(GameObject.Find("ThingsPool"));
+    private GameObject[] pool_of_things = null;// misc.get_children_of(GameObject.Find("ThingsPool"));
     private List<GameObject> created = new List<GameObject>();
 
     private Interface inface = null; //TODO: pass one in in constructor?
