@@ -54,6 +54,19 @@ public class misc
 
 		return children;
 	}
+
+    public static Vector3 ScreenspacePointToPlane( Plane plane, Vector3 screenspace_position )
+    {
+        // get ray from screenpos
+        Ray ray = Camera.main.ScreenPointToRay( screenspace_position );
+        
+        // cast ray to plane
+        float depth;
+        plane.Raycast(ray, out depth);
+        Vector3 pos_on_ray = ray.GetPoint(depth);
+
+        return pos_on_ray;
+    }
 }
 
 // Fisher-Yates Shuffle
