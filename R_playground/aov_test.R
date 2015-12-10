@@ -2,7 +2,7 @@
 #  https://www.rstudio.com/products/rstudio/download/
 
 # Read CSV into R
-csv_data <- read.csv(file="./data/1447970910659.57_1001_mouse_screenspace_select_selections.csv", header=TRUE, sep=",")
+csv_data <- read.csv(file="./data/test.csv", header=TRUE, sep=",")
 
 data = as.data.frame( csv_data )
 
@@ -16,7 +16,7 @@ data$was_selection_correct =
                      as.factor( data$was_selection_correct )
 
 # we want to look at input and interface together, for now
-data$input_and_interface <- with(data, interaction(input_method,  interface), drop = TRUE )
+data$input_and_interface = data$input_method #with(data, interaction(input_method,  interface), drop = TRUE )
 
 # exploratory stuff
 # show means and variance
