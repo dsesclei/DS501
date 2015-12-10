@@ -2,13 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class test_select_red : Minigame {
+public class select_three : Minigame {
 
     List<GameObject> things = new List<GameObject>();
+    Plane gamePlane;
+
     int number_selected = 0;
     int number_total = 3;
-	
-// need an init
+
+    float z_distance = 0.4f;
+
+    // need an init
     public override void init()
     {
         name = "test_select_red";
@@ -16,6 +20,9 @@ public class test_select_red : Minigame {
 
         // show the cursor, if you want one
         helper.showCursor();
+
+        // get a plane to put objects on
+        gamePlane = helper.getGamePlane( depth: z_distance );
 
         // get some objects (you can also just make some or whatever)
         for (int i = 0; i < number_total; i++)
@@ -27,7 +34,7 @@ public class test_select_red : Minigame {
         }
 
         // move the objects in the x/y plane (we may need to define common boundaries somewhere)
-        float z_distance = 0.3f;
+        //float z_distance = 0.3f;
         float max_x = Camera.main.pixelWidth,
               max_y = Camera.main.pixelHeight;
         foreach( GameObject thing in things )
@@ -36,8 +43,19 @@ public class test_select_red : Minigame {
                                                     Random.Range(0, max_y),
                                                     z_distance
                                                   );
-            thing.transform.position = Camera.main.ScreenToWorldPoint( random_screenpos );
+
+            thing.transform.position = misc.ScreenspacePointToPlane( gamePlane, random_screenpos );
+
+            /*
+            // get ray from screenpos
+            Ray ray = Camera.main.ScreenPointToRay(random_screenpos);
+            // cast ray to plane
+            float depth;
+            plane.Raycast(ray, out depth);
+
+            thing.transform.position = Camera.main.ScreenToWorldPoint( ray.GetPoint( depth ) );//random_screenpos );
             //TODO: this could push out to a plane, not just a set z
+            */
         }
 
         // on select listener
@@ -68,8 +86,11 @@ public class test_select_red : Minigame {
             Vector3 screen_pos = Camera.main.WorldToScreenPoint( world_pos );
             screen_pos.x += helper.screenspace_velocity.x;
             screen_pos.y += helper.screenspace_velocity.y;
-            selected.transform.position = Camera.main.ScreenToWorldPoint(screen_pos);
+            selected.transform.position = misc.ScreenspacePointToPlane( gamePlane, screen_pos );
+            //Camera.main.ScreenToWorldPoint(screen_pos);
 
+
+            //thing.transform.position = misc.ScreenspacePointToPlane(plane, random_screenpos);
             //TODO: this could move within a plane, not just a set z
         };
     }

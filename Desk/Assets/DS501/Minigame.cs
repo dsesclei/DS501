@@ -49,7 +49,15 @@ public class MinigameHelper
         //TODO: change to just pull and activate / deactiveate if instantiation is slow?
     }
 
+    public Plane getGamePlane( float depth = 0.4f)
+    {
+        return new Plane( new Vector3(0, 0, -1), depth );
+    }
 
+    //public Vector3 ScreenspacePointToGamePlane(Vector3 screenspace_position)
+    //{
+    //    return misc.ScreenspacePointToPlane(gamePlane, screenspace_position);
+    //}
 
 
 // Things for the helper's internals
@@ -63,6 +71,8 @@ public class MinigameHelper
 
         this.inface = inface;
         inface.init();
+
+        //gamePlane = new Plane( new Vector3( 0,0,1 ), 0.3f );
 
         // add more event monitoring
         onButton += () => 
@@ -98,6 +108,8 @@ public class MinigameHelper
     private Interface inface = null; //TODO: pass one in in constructor?
     private Minigame minigame = null;
     public bool has_ended = false;
+
+    //private Plane gamePlane;
 
 
     public void go()

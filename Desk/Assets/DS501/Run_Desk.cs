@@ -27,7 +27,7 @@ public class Run_Desk : MonoBehaviour {
         HeadPose.onRotate   += () => { ScreenspaceCursor.update_position(Mouse.position); };
 
         //build minigames
-        minigames.Add( new MinigameHelper( new test_select_red(), interface_mouse_screenspace ) );
+        minigames.Add( new MinigameHelper( new select_three(), interface_mouse_screenspace ) );
 
     }
 	
