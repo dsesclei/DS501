@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.VR;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -50,6 +51,8 @@ public class Run_Desk : MonoBehaviour {
 
     public virtual void Update()
     {
+        if (Input.GetKeyDown( KeyCode.R ))
+            InputTracking.Recenter();
 
         if (active_minigame == null || active_minigame.has_ended)
         {
