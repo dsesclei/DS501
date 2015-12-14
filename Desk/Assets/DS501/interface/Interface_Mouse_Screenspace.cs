@@ -47,6 +47,7 @@ public class Interface_Mouse_Screenspace : Interface
 
     public void update_cursor()
     {
+        if (!is_active) return;
         ScreenspaceCursor.update_position(Mouse.position);
     }
 

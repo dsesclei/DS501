@@ -79,7 +79,7 @@ public class MinigameHelper
         // add more event monitoring
         onButton += () => 
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(inface.get_ScreenspacePosition());
             selected = misc.Raycast_Select_Object(ray);
             //Debug.Log("Raycast: " + selected);
             if (selected != null)

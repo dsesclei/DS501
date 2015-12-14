@@ -13,7 +13,10 @@ public class Run_Desk : MonoBehaviour {
     private GameObject[] pool_of_things = null;
 
     // interfaces
-    protected Interface_Mouse_Screenspace interface_mouse_screenspace = new Interface_Mouse_Screenspace();
+    public Interface_Mouse_Screenspace interface_mouse_screenspace = new Interface_Mouse_Screenspace();
+    public Interface_Xbox interface_xbox = new Interface_Xbox();
+    public Interface_Leap interface_leap = new Interface_Leap();
+    public Interface_Wiimote interface_wiimote = new Interface_Wiimote();
 
     public virtual void Start()
     {
