@@ -39,9 +39,7 @@ public class sort_by_color : Minigame
               max_y = Camera.main.pixelHeight;
         foreach (GameObject obj in objects)
         {
-            Vector3 random_screenpos = new Vector3(Random.Range(0, max_x), Random.Range(0, max_y), z_distance);
-
-            obj.transform.position = Camera.main.ScreenToWorldPoint(random_screenpos);
+            setRandomPositionOnScreen(obj);
         }
         
         helper.onDrag += (GameObject selected) =>
@@ -69,5 +67,23 @@ public class sort_by_color : Minigame
                 m.color = color;
             }
         }
+    }
+
+    private void setRandomPositionOnScreen(GameObject obj)
+    {
+        float max_x = Camera.main.pixelWidth,
+              max_y = Camera.main.pixelHeight;
+        Vector3 pos;
+        Ray ray;
+        float depth;
+
+        do
+        {
+            pos = new Vector3(Random.Range(0, max_x), Random.Range(0, max_y), plane.distance);
+            ray = Camera.main.ScreenPointToRay(pos);
+            plane.Raycast(ray, out depth);
+        } while (Physics.Raycast(ray, depth));
+
+        obj.transform.position = ray.GetPoint(depth);
     }
 }
