@@ -7,10 +7,10 @@ public class Run_test_Alex : Run_Desk {
     public override void MakeMinigames()
     {
         Interface inface;
-        //inface = interface_mouse_screenspace;
+        inface = interface_mouse_screenspace;
         //inface = interface_leap;
         //inface = interface_xbox;
-        inface = interface_wiimote;
+        //inface = interface_wiimote;
 
         //AddMinigame(new tutorial_select_three(), inface);
 
