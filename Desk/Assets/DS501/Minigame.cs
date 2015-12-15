@@ -10,8 +10,9 @@ public abstract class Minigame
 
     public MinigameHelper helper;
 
-    public abstract void update();
     public abstract void init();
+    public abstract void update();
+    public abstract void destroy();
 }
 
 public class MinigameHelper
@@ -191,6 +192,7 @@ public class MinigameHelper
         OnUpdate.unregister(this.update);
 
         // cleanup
+        this.minigame.destroy();
         ScreenspaceCursor.hide();
         //current_interface.disable();
 
