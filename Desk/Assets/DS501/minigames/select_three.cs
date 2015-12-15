@@ -86,7 +86,12 @@ public class select_three : Minigame {
         // could still add some light animation or something here
     }
 
-// a utility function
+    public override void destroy()
+    {
+        
+    }
+
+    // a utility function
     private void setColor(GameObject obj, Color color)
     {
         foreach (Renderer r in obj.GetComponents<Renderer>())
