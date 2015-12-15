@@ -24,12 +24,18 @@ public class Intercace_Trackball : Interface
     {
         is_active = true;
         TrackBall.onMove += update_cursor;
+
+        HeadPose.onMove += update_cursor;
+        HeadPose.onRotate += update_cursor;
     }
 
     public void off()
     {
         is_active = false;
         TrackBall.onMove -= update_cursor;
+
+        HeadPose.onMove += update_cursor;
+        HeadPose.onRotate += update_cursor;
     }
 
 

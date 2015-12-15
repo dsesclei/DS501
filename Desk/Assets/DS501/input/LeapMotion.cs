@@ -24,6 +24,12 @@ public class LeapMotion {
 
     public static Vector3 new_pos_right_palm;
 
+    public static Vector3 new_pos_right_pointer = new Vector3(),
+                              pos_right_pointer = new Vector3(),
+                              vel_right_pointer = new Vector3();
+    public static bool has_fingertip = false;
+    public static bool is_pressed_right_pointer = false;
+
     public static void init()//GameObject hand_controller ) 
     {
         // reset whenever init is called
@@ -66,7 +72,19 @@ public class LeapMotion {
             new_pos_right_palm = new_right.GetPalmPosition();//.ToUnityScaled();
             new_rot_right_palm = new_right.GetPalmRotation();
             did_have_rot_right_palm = true;
-            //new_pos_right_fingertip = new_right.GetLeapHand().Finger(1).
+
+            Finger right_pointer = new_right.GetLeapHand().Finger(1);
+            if( right_pointer.IsValid )
+            {
+                new_pos_right_pointer = LeapToUnityWorld(right_pointer.TipPosition);
+                vel_right_pointer = right_pointer.TipVelocity.ToUnity();
+                has_fingertip = true;
+            }
+            else
+            {
+                has_fingertip = false;
+                Debug.Log("No Fingertip!");
+            }
         }
 
         //if (new_right != null)
@@ -95,7 +113,9 @@ public class LeapMotion {
         // only calc rot_delta if we had a hand last frame
         if (did_have_rot_right_palm)
             rot_right_palm_delta = Quaternion.Inverse(rot_right_palm) * new_rot_right_palm;
-        
+
+        if (has_fingertip && vel_right_pointer != Vector3.zero)
+            onMove_RightPointer();
 
         if (Mathf.Abs(vel_right_palm.z) > 0.005)
         {
@@ -104,10 +124,32 @@ public class LeapMotion {
         }
         else
             is_right_palm_pressed = false;
+
+
+        if (Mathf.Abs(vel_right_pointer.z) > 0.005)
+        {
+            is_pressed_right_pointer = true;
+            onMove_RightPointer();
+        }
+        else
+            is_pressed_right_pointer = false;
+    }
+
+    //public static Vector3 LeapToUnity_Position( Leap.Vector v )
+    //{
+    //   return new Vector3 ( v.x, v.y, -v.z );
+    //}
+    public static Vector3 LeapToUnityWorld(Leap.Vector v)
+    {
+        //return new Vector3(v.x, v.y, v.z);
+        Vector3 unityPosition = v.ToUnityScaled(false);
+        Vector3 worldPosition = hand_controller.transform.TransformPoint(unityPosition);
+        return worldPosition;
     }
 
     public static Action onCreate_Right = () => {  };
     public static Action onMove_RightPalm = () => { };
     public static Action onMove_RightPointer = () => { };
     public static Action onPress_RightPalm = () => { };
+    public static Action onPress_RightPointer = () => { };
 }

@@ -17,19 +17,25 @@ public class Interface_Xbox : Interface
 
     public void init()
     {
-        Mouse.init();
+        Xbox.init();
     }
 
     public void on()
     {
         is_active = true;
         Xbox.onMove += update_cursor;
+
+        HeadPose.onMove += update_cursor;
+        HeadPose.onRotate += update_cursor;
     }
 
     public void off()
     {
         is_active = false;
         Xbox.onMove -= update_cursor;
+
+        HeadPose.onMove -= update_cursor;
+        HeadPose.onRotate -= update_cursor;
     }
 
 

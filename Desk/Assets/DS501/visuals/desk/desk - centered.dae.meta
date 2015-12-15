@@ -833,6 +833,12 @@ ModelImporter:
     6400260: ID976
     6400262: ID984
     6400264: ID992
+    6400266: ID1082
+    6400268: ID1088
+    6400270: ID1092
+    6400272: ID1096
+    6400274: ID1100
+    6400276: ID1104
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -890,10 +896,8 @@ ModelImporter:
     legStretch: .0500000007
     feetSpacing: 0
     rootMotionBoneName: 
-    hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
-  humanoidOversampling: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

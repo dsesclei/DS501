@@ -45,6 +45,8 @@ public class sort_by_color : Minigame
         
         helper.onDrag += (GameObject selected) =>
         {
+            if (selected.name != "blue" && selected.name != "red") return;
+
             Debug.Log("OnDrag");
             Vector3 world_pos = selected.transform.position;
             Vector3 screen_pos = Camera.main.WorldToScreenPoint(world_pos);
@@ -79,6 +81,8 @@ public class sort_by_color : Minigame
             bool failure = false;
             foreach (GameObject obj in objects)
             {
+                if (obj.name != "blue" && obj.name != "red") return;
+
                 if (obj.transform.position.x < 0)
                 {
                     Debug.Log("on left", obj);

@@ -24,19 +24,26 @@ public class Interface_Leap : Interface
     {
         is_active = true;
         LeapMotion.onMove_RightPalm += update_cursor;
-        //LeapMotion.onPress_RightPalm += update_action;
+        //LeapMotion.onMove_RightPointer += update_cursor;
+
+        HeadPose.onMove += update_cursor;
+        HeadPose.onRotate += update_cursor;
     }
 
     public void off()
     {
         is_active = false;
         LeapMotion.onMove_RightPalm -= update_cursor;
-        //LeapMotion.onPress_RightPalm -= update_action;
+        //LeapMotion.onMove_RightPointer -= update_cursor;
+
+        HeadPose.onMove += update_cursor;
+        HeadPose.onRotate += update_cursor;
     }
 
 
     public void update()
     {
+        
         rot_delta = LeapMotion.rot_right_palm_delta;
 
         Vector3 screenspace_position = Camera.main.WorldToScreenPoint(LeapMotion.pos_right_palm);
@@ -46,6 +53,19 @@ public class Interface_Leap : Interface
         pos_delta = LeapMotion.vel_right_palm; //TODO: what coord space?
 
         action = LeapMotion.is_right_palm_pressed;
+        
+
+        /*
+        rot_delta = LeapMotion.rot_right_palm_delta;
+
+        Vector3 screenspace_position = Camera.main.WorldToScreenPoint(LeapMotion.pos_right_pointer);
+        screenspace_position.z = 0;
+
+        position = screenspace_position;
+        pos_delta = LeapMotion.vel_right_pointer; //TODO: what coord space?
+
+        action = LeapMotion.is_pressed_right_pointer;
+         */
     }
 
 
@@ -53,6 +73,7 @@ public class Interface_Leap : Interface
     {
         if (!is_active) return;
 
+        //Vector3 screenspace_position = Camera.main.WorldToScreenPoint(LeapMotion.pos_right_pointer);
         Vector3 screenspace_position = Camera.main.WorldToScreenPoint(LeapMotion.pos_right_palm);
         screenspace_position.z = 0;
         //Debug.Log("LEAP UPDATE CURSOR: " + screenspace_position);

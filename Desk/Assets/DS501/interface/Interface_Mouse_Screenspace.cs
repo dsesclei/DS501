@@ -25,12 +25,18 @@ public class Interface_Mouse_Screenspace : Interface
     {
         is_active = true;
         Mouse.onMove += update_cursor;
+
+        HeadPose.onMove += update_cursor;
+        HeadPose.onRotate += update_cursor;
     }
 
     public void off()
     {
         is_active = false;
         Mouse.onMove -= update_cursor;
+
+        HeadPose.onMove += update_cursor;
+        HeadPose.onRotate += update_cursor;
     }
 
 

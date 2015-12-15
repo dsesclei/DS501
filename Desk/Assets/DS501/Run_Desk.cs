@@ -34,8 +34,6 @@ public class Run_Desk : MonoBehaviour {
         // init ScreenspaceCursor
         ScreenspaceCursor.init();
         HeadPose.init();
-        HeadPose.onMove   += () => { ScreenspaceCursor.update_position(Mouse.position); };
-        HeadPose.onRotate += () => { ScreenspaceCursor.update_position(Mouse.position); };
 
         MakeMinigames();
     }

@@ -19,6 +19,7 @@ public class Mouse : MonoBehaviour
 	// must call init in main run file
 	public static void init ( )//GameObject root ) 
 	{
+        Debug.Log("Mouse Init called.");
 		//Mouse.root = root;
 
 		//TODO: this check is maybe not robust to parallel calls?

@@ -25,12 +25,18 @@ public class Interface_Wiimote : Interface
         is_active = true;
         Wiimote.onMove += update_cursor;
 
+        HeadPose.onMove += update_cursor;
+        HeadPose.onRotate += update_cursor;
+
     }
 
     public void off()
     {
         is_active = false;
         Wiimote.onMove -= update_cursor;
+
+        HeadPose.onMove += update_cursor;
+        HeadPose.onRotate += update_cursor;
     }
 
 

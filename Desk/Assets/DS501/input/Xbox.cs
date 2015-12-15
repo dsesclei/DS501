@@ -44,7 +44,7 @@ public class Xbox : MonoBehaviour
         button_down = Input.GetButton("Xbox A");
         if (Input.GetButton("Xbox A"))    Xbox.onDown_A();
 
-        position_delta = last_position - position;
+        position_delta = position - last_position;
         last_position = position;
 
         if (position_delta != vec2_zero) Xbox.onMove();
