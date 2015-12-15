@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class sort_by_color : Minigame
 {
@@ -52,6 +53,11 @@ public class sort_by_color : Minigame
             selected.transform.position = misc.ScreenspacePointToPlane(plane, screen_pos);
 
         };
+    }
+
+    public override void destroy()
+    {
+        Debug.Log("destroy called");
     }
 
     private bool action_happened = false;
@@ -106,10 +112,6 @@ public class sort_by_color : Minigame
                 }
             }
             helper.success = !failure;
-            if (helper.success)
-            {
-                Debug.Log("SUCCESS");
-            }
         }
     }
 
