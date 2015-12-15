@@ -39,7 +39,7 @@ public class sort_by_color : Minigame
               max_y = Camera.main.pixelHeight;
         foreach (GameObject obj in objects)
         {
-            setRandomPositionOnScreen(obj);
+            helper.setRandomPositionOnScreen(obj, plane);
         }
         
         helper.onDrag += (GameObject selected) =>
@@ -50,12 +50,67 @@ public class sort_by_color : Minigame
             screen_pos.x += helper.screenspace_velocity.x;
             screen_pos.y += helper.screenspace_velocity.y;
             selected.transform.position = misc.ScreenspacePointToPlane(plane, screen_pos);
+
         };
     }
+
+    private bool action_happened = false;
     
     public override void update()
     {
+        if (helper.action)
+        {
+            action_happened = true;
+        }
+        // Check if the objects are sorted.
+        if (action_happened && !helper.action_held)
+        {
+            // A drag was happening, but it has stopped.
+            action_happened = false;
 
+            string leftSideType = "";
+            string rightSideType = "";
+            bool failure = false;
+            foreach (GameObject obj in objects)
+            {
+                if (obj.transform.position.x < 0)
+                {
+                    Debug.Log("on left", obj);
+                    if (leftSideType == "" || leftSideType == obj.name)
+                    {
+                        leftSideType = obj.name;
+                    }
+                    else
+                    {
+                        failure = true;
+                        break;
+                    }
+                }
+                else if (obj.transform.position.x > 0)
+                {
+                    Debug.Log("on right", obj);
+                    if (rightSideType == "" || rightSideType == obj.name)
+                    {
+                        rightSideType = obj.name;
+                    }
+                    else
+                    {
+                        failure = true;
+                        break;
+                    }
+                }
+                else
+                {
+                    failure = true;
+                    break;
+                }
+            }
+            helper.success = !failure;
+            if (helper.success)
+            {
+                Debug.Log("SUCCESS");
+            }
+        }
     }
 
     private void setColor(GameObject obj, Color color)
@@ -67,23 +122,5 @@ public class sort_by_color : Minigame
                 m.color = color;
             }
         }
-    }
-
-    private void setRandomPositionOnScreen(GameObject obj)
-    {
-        float max_x = Camera.main.pixelWidth,
-              max_y = Camera.main.pixelHeight;
-        Vector3 pos;
-        Ray ray;
-        float depth;
-
-        do
-        {
-            pos = new Vector3(Random.Range(0, max_x), Random.Range(0, max_y), plane.distance);
-            ray = Camera.main.ScreenPointToRay(pos);
-            plane.Raycast(ray, out depth);
-        } while (Physics.Raycast(ray, depth));
-
-        obj.transform.position = ray.GetPoint(depth);
     }
 }

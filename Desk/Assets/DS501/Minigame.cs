@@ -54,13 +54,31 @@ public class MinigameHelper
         return new Plane( new Vector3(0, 0, -1), depth );
     }
 
+    public void setRandomPositionOnScreen(GameObject obj, Plane plane)
+    {
+        float max_x = Camera.main.pixelWidth,
+              max_y = Camera.main.pixelHeight;
+        Vector3 pos;
+        Ray ray;
+        float depth;
+
+        do
+        {
+            pos = new Vector3(UnityEngine.Random.Range(0, max_x), UnityEngine.Random.Range(0, max_y), plane.distance);
+            ray = Camera.main.ScreenPointToRay(pos);
+            plane.Raycast(ray, out depth);
+        } while (Physics.Raycast(ray, depth));
+
+        obj.transform.position = ray.GetPoint(depth);
+    }
+
     //public Vector3 ScreenspacePointToGamePlane(Vector3 screenspace_position)
     //{
     //    return misc.ScreenspacePointToPlane(gamePlane, screenspace_position);
     //}
 
 
-// Things for the helper's internals
+    // Things for the helper's internals
 
     public MinigameHelper( Minigame minigame, Interface inface, GameObject[] pool_of_things )
     {
