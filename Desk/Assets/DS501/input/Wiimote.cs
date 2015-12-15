@@ -63,7 +63,7 @@ public class Wiimote {
 	{
         
         //Debug.Log("Wiimotes: " + WiimoteManager.HasWiimote());
-        if (!WiimoteManager.HasWiimote()) { Debug.Log("No Wiimotes found."); return; }
+        if (!WiimoteManager.HasWiimote()) { };//Debug.Log("No Wiimotes found."); return; }
 
         //update wiimotes; turn IR on for new wiimotes
         WiimoteApi.Wiimote w;
