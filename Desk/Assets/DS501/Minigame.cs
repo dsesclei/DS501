@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Timers;
 
 public abstract class Minigame
 {
     public string name         = "NO_NAME_SET";
     public string instructions = "NO_INSTRUCTIONS_SET";
+    public decimal duration = 5.0m;
 
     public MinigameHelper helper;
 
@@ -27,6 +30,10 @@ public class MinigameHelper
     public bool        action_held  = false;    // is the action active? (Is the button held down?)
 
     public bool        success = false;
+
+    public decimal time_left;
+    public Timer timer;
+    public Text timer_text;
 
     public GameObject selected = null;
 
@@ -139,6 +146,16 @@ public class MinigameHelper
         OnUpdate.register(this.update);
 
         //start timer
+        timer_text = GameObject.Find("TimerText").GetComponent<Text>();
+        Debug.Log(timer_text.text, timer_text);
+        time_left = this.minigame.duration;
+        timer = new Timer(100); // Update timer every 0.1s
+        timer.Elapsed += (object sender, ElapsedEventArgs e) =>
+        {
+            // Update the timer.
+            time_left = time_left - 0.1m;
+        };
+        timer.Start();
 
         // zero the stored rotation
         rotation = new Quaternion();
@@ -156,6 +173,14 @@ public class MinigameHelper
 
         screenspace_position = inface.get_ScreenspacePosition();
         screenspace_velocity = inface.get_ScreenspacePosDelta();
+
+        Debug.Log(time_left);
+        timer_text.text = time_left.ToString();
+        if (time_left <= 0)
+        {
+            timer.Stop();
+            end();
+        }
 
         action_held = inface.get_Button();
 
