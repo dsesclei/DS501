@@ -58,7 +58,7 @@ public class MinigameHelper
         //TODO: change to just pull and activate / deactiveate if instantiation is slow?
     }
 
-    public Plane getGamePlane( float depth = 0.4f)
+    public Plane getGamePlane( float depth = 2.0f)
     {
         return new Plane( new Vector3(0, 0, -1), depth );
     }
@@ -143,6 +143,7 @@ public class MinigameHelper
 
     public void go()
     {
+        Debug.Log("  Start minigame: " + minigame.name);
 
         //register update function
         OnUpdate.register(this.update);
@@ -155,7 +156,7 @@ public class MinigameHelper
         timer.Elapsed += (object sender, ElapsedEventArgs e) =>
         {
             // Update the timer.
-            time_left = time_left - 0.1m;
+            //time_left = time_left - 0.1m; //DEBUG//
         };
         timer.Start();
 
@@ -207,6 +208,8 @@ public class MinigameHelper
 			onButtonUp();
 		}
 		last_action_held = action_held;
+
+        //Debug.Log("Is Rotation? " + last_rotation + " : " + rotation);
 
         // fire other events
         if (             last_rotation != rotation             )    onRotate();

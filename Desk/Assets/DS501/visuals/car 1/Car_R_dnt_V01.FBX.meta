@@ -30,6 +30,11 @@ ModelImporter:
     4300004: Wheel003
     4300006: Wheel004
     4300008: Wheel002
+    6400000: //RootNode
+    6400002: Wheel001
+    6400004: Wheel002
+    6400006: Wheel003
+    6400008: Wheel004
     7400000: Take 001
     9500000: //RootNode
   materials:
@@ -57,7 +62,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -88,10 +93,8 @@ ModelImporter:
     legStretch: .0500000007
     feetSpacing: 0
     rootMotionBoneName: 
-    hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
-  humanoidOversampling: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

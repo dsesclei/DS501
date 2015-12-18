@@ -9,6 +9,8 @@ public class Run_Desk : MonoBehaviour {
     protected MinigameHelper active_minigame = null;
     protected int active_minigame_index = -1;
 
+    public bool is_showing_instructions = false;
+
 
     private GameObject[] pool_of_things = null;
 
@@ -20,6 +22,8 @@ public class Run_Desk : MonoBehaviour {
 
     public virtual void Start()
     {
+        InputTracking.Recenter();
+
         // get things pool
         GameObject pool_root = GameObject.Find("ThingsPool");
         pool_of_things = misc.get_children_of( pool_root );
@@ -35,14 +39,18 @@ public class Run_Desk : MonoBehaviour {
         ScreenspaceCursor.init();
         HeadPose.init();
 
+        //ScreenspaceCursor.hide();
+
         MakeMinigames();
     }
 
 
     public virtual void MakeMinigames()
     {
-        //AddMinigame( new select_three() );
-		AddMinigame ( new rotate() );
+        //AddMinigame( new tutorial_select_three() );
+        AddMinigame( new rotate(), interface_leap );
+        //AddMinigame( new avoid_game() );
+        //AddMinigame( new sort_by_color() );
     }
 
     public virtual void AddMinigame( Minigame game, Interface inface = null )
@@ -62,9 +70,11 @@ public class Run_Desk : MonoBehaviour {
             if (active_minigame_index >= minigames.Count)
             {
                 //do end
+                Debug.Log( "The End." );
             }
             else
             {
+                Debug.Log("Starting next minigame ...");
                 active_minigame = minigames[active_minigame_index];
 
                 active_minigame.go();

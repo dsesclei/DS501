@@ -3,7 +3,8 @@ using System.Collections;
 
 
 public class Interface_Mouse_Screenspace : Interface
-{
+{   
+
     bool is_active = false;
 
     Quaternion rot_delta;

@@ -52,7 +52,14 @@ public class Interface_Wiimote : Interface
                                  );
 
 
-        rot_delta = Wiimote.rot_delta;
+        //rot_delta = Wiimote.rot_delta;
+        Vector3 pos_delta = new Vector3(
+                                    Camera.main.pixelWidth * Wiimote.velocity.x,
+                                    Camera.main.pixelHeight * Wiimote.velocity.y,
+                                    0
+                                 );
+        rot_delta = Quaternion.Euler(pos_delta.y, pos_delta.x, 0);
+        //rot_delta = Quaternion.Euler(0,0, Wiimote.rot_delta.eulerAngles.z * 5);
 
         position = screenspace_position;
         pos_delta = Wiimote.velocity; //TODO: coord space?

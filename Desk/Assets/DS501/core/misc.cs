@@ -21,10 +21,23 @@ public class misc
 		else
 			return null;
 	}
+    /*
+    public static float Raycast_Find_Collision_Depth(Ray ray, float maxDistance = 100 )
+    {
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, maxDistance))
+        {
+            return hit.distance;
+        }
+        else
+            return -1;
+    }
+    */
 
 	public static double get_timestamp( )
 	{
-
         double timestamp = (DateTime.UtcNow.Subtract(
                                 new DateTime(1970, 1, 1))
                             ).TotalMilliseconds;

@@ -239,6 +239,12 @@ ModelImporter:
     2300086: Thong 1
     2300088: under_jaw_base
     2300090: under_jaw_base 1
+    2300092: ID142
+    2300094: ID276
+    2300096: ID288
+    2300098: ID328
+    2300100: ID74
+    2300102: ID88
     3300000: Component_1
     3300002: Component_1 1
     3300004: Component_3
@@ -285,6 +291,12 @@ ModelImporter:
     3300086: Thong 1
     3300088: under_jaw_base
     3300090: under_jaw_base 1
+    3300092: ID142
+    3300094: ID276
+    3300096: ID288
+    3300098: ID328
+    3300100: ID74
+    3300102: ID88
     4300000: head_base
     4300002: ID24
     4300004: ID32
@@ -331,6 +343,64 @@ ModelImporter:
     4300086: ID368
     4300088: under_jaw_base
     4300090: Thong
+    4300092: ID74
+    4300094: ID88
+    4300096: ID142
+    4300098: ID276
+    4300100: ID288
+    4300102: ID328
+    6400000: Component_1
+    6400002: Component_1 1
+    6400004: Component_3
+    6400006: Component_3 1
+    6400008: Ears
+    6400010: Ears 1
+    6400012: eye_brow
+    6400014: eye_brow 1
+    6400016: Eyes_ball
+    6400018: Eyes_ball 1
+    6400020: head_base
+    6400022: head_base 1
+    6400024: ID118
+    6400026: ID126
+    6400028: ID134
+    6400030: ID142
+    6400032: ID154
+    6400034: ID176
+    6400036: ID182
+    6400038: ID188
+    6400040: ID228
+    6400042: ID234
+    6400044: ID24
+    6400046: ID240
+    6400048: ID246
+    6400050: ID252
+    6400052: ID258
+    6400054: ID264
+    6400056: ID270
+    6400058: ID276
+    6400060: ID288
+    6400062: ID310
+    6400064: ID316
+    6400066: ID32
+    6400068: ID322
+    6400070: ID328
+    6400072: ID340
+    6400074: ID356
+    6400076: ID362
+    6400078: ID368
+    6400080: ID38
+    6400082: ID44
+    6400084: ID50
+    6400086: ID56
+    6400088: ID62
+    6400090: ID68
+    6400092: ID74
+    6400094: ID88
+    6400096: Thong
+    6400098: Thong 1
+    6400100: under_jaw_base
+    6400102: under_jaw_base 1
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -357,7 +427,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -388,10 +458,8 @@ ModelImporter:
     legStretch: .0500000007
     feetSpacing: 0
     rootMotionBoneName: 
-    hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
-  humanoidOversampling: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

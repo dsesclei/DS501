@@ -9,7 +9,7 @@ public class sort_by_color : Minigame
     Plane plane;
 
     int total_objects = 6;
-    float z_distance = 0.4f;
+    float z_distance = 1.4f;
 
     public override void init()
     {

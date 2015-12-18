@@ -34,6 +34,11 @@ ModelImporter:
     4300004: Box01
     4300006: Object06
     4300008: Object05
+    6400000: Box01
+    6400002: Object01
+    6400004: Object05
+    6400006: Object06
+    6400008: Object12
   materials:
     importMaterials: 1
     materialName: 0
@@ -59,7 +64,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -90,10 +95,8 @@ ModelImporter:
     legStretch: .0500000007
     feetSpacing: 0
     rootMotionBoneName: 
-    hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 0
-  humanoidOversampling: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

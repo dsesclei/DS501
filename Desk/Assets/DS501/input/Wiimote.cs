@@ -92,25 +92,24 @@ public class Wiimote {
         //wiimote.SetupIRCamera(IRDataType.BASIC);
 
         // read wiimote data, wiimote plus data
+        rot_delta = Quaternion.identity;
         int ret;
         do
         {
             ret = wiimote.ReadWiimoteData();
 
-            rot_delta = Quaternion.identity;
-
             if (ret > 0 && wiimote.current_ext == ExtensionController.MOTIONPLUS)
             {
-                Vector3 offset = new Vector3(  -wiimote.MotionPlus.PitchSpeed,
+                Vector3 offset = new Vector3(-wiimote.MotionPlus.PitchSpeed,
                                                 wiimote.MotionPlus.YawSpeed,
-                                                wiimote.MotionPlus.RollSpeed) / 95f; // Divide by 95Hz (average updates per second from wiimote)
+                                                wiimote.MotionPlus.RollSpeed )/ 95f; // Divide by 95Hz (average updates per second from wiimote)
                 
 
                 rot_delta = Quaternion.Euler( offset );
                 rotation *= rot_delta;
 
                 //TODO: calibrate 0?
-                //Debug.Log("read WMP: " + offset + " : " + rot_delta + " : " + rotation);
+                Debug.Log("read WMP: " + offset + " : " + rot_delta.eulerAngles + " : " + rotation);
 
                 //TODO: this could probably use some smoothing
             }

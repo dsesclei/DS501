@@ -7,7 +7,7 @@ public class avoid_game : Minigame {
 	List<GameObject> walls = new List<GameObject>();
 	Bounds bounds;
 
-	float z_distance = 0.4f;
+	float z_distance = 1.4f;
 	float gapWidth = 25;
 	float speed = 3.0f;
 	

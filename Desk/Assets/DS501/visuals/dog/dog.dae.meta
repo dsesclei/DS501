@@ -127,6 +127,30 @@ ModelImporter:
     4300042: ID154
     4300044: ID160
     4300046: ID166
+    6400000: //RootNode
+    6400002: ID104
+    6400004: ID110
+    6400006: ID120
+    6400008: ID128
+    6400010: ID134
+    6400012: ID140
+    6400014: ID148
+    6400016: ID154
+    6400018: ID160
+    6400020: ID166
+    6400022: ID18
+    6400024: ID24
+    6400026: ID30
+    6400028: ID36
+    6400030: ID42
+    6400032: ID50
+    6400034: ID56
+    6400036: ID66
+    6400038: ID74
+    6400040: ID80
+    6400042: ID86
+    6400044: ID92
+    6400046: ID98
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -153,7 +177,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -184,10 +208,8 @@ ModelImporter:
     legStretch: .0500000007
     feetSpacing: 0
     rootMotionBoneName: 
-    hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
-  humanoidOversampling: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

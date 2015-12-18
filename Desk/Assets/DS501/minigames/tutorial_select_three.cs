@@ -10,7 +10,7 @@ public class tutorial_select_three : Minigame {
     int number_selected = 0;
     int number_total = 3;
 
-    float z_distance = 0.4f;
+    float z_distance = 1.4f;
 
     // need an init
     public override void init()
