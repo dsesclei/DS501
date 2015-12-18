@@ -39,7 +39,8 @@ public class MinigameHelper
 
     // listeners
     public             Action onButton = () => { };
-    public             Action onMove   = () => { };
+	public             Action onButtonUp = () => { };
+	public             Action onMove   = () => { };
     public             Action onRotate = () => { };
     public Action<GameObject> onSelect = (GameObject obj) => { };
     public Action<GameObject> onDrag   = (GameObject obj) => { };
@@ -125,7 +126,7 @@ public class MinigameHelper
 
     }
 
-
+	private bool last_action_held = false;
     private bool action_processed = false;
     private Quaternion last_rotation;
     private Vector2 last_screenspace_position;
@@ -142,6 +143,7 @@ public class MinigameHelper
 
     public void go()
     {
+
         //register update function
         OnUpdate.register(this.update);
 
@@ -174,7 +176,7 @@ public class MinigameHelper
         screenspace_position = inface.get_ScreenspacePosition();
         screenspace_velocity = inface.get_ScreenspacePosDelta();
 
-        Debug.Log(time_left);
+        //Debug.Log(time_left);
         timer_text.text = time_left.ToString();
         if (time_left <= 0)
         {
@@ -200,6 +202,11 @@ public class MinigameHelper
 
         if (!action_held && !action)
             action_processed = false;
+
+		if (!action_held && last_action_held) {
+			onButtonUp();
+		}
+		last_action_held = action_held;
 
         // fire other events
         if (             last_rotation != rotation             )    onRotate();

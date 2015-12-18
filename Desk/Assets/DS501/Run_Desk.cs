@@ -41,7 +41,8 @@ public class Run_Desk : MonoBehaviour {
 
     public virtual void MakeMinigames()
     {
-        AddMinigame( new select_three() );
+        //AddMinigame( new select_three() );
+		AddMinigame ( new rotate() );
     }
 
     public virtual void AddMinigame( Minigame game, Interface inface = null )
