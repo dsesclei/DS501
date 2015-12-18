@@ -180,6 +180,7 @@ public class MinigameHelper
         {
             timer.Stop();
             end();
+			return;
         }
 
         action_held = inface.get_Button();
@@ -213,7 +214,6 @@ public class MinigameHelper
 
     public void end()
     {
-
         OnUpdate.unregister(this.update);
 
         // cleanup

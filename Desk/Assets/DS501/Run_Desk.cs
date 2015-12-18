@@ -58,6 +58,7 @@ public class Run_Desk : MonoBehaviour {
         if (active_minigame == null || active_minigame.has_ended)
         {
             active_minigame_index++;
+			active_minigame_index %= minigames.Count;
             active_minigame = minigames[active_minigame_index];
 
             active_minigame.go();
