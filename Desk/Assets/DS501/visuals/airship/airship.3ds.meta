@@ -1,0 +1,208 @@
+fileFormatVersion: 2
+guid: 4aee3ac65e1490040a85d0f9f1b37c95
+timeCreated: 1450425398
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: domek1
+    100004: domek2
+    100006: domek3
+    100008: domek4_dac
+    100010: drewno1
+    100012: drewno2
+    100014: drewno2b
+    100016: drewno3
+    100018: kadlub
+    100020: kadlubb
+    100022: koncowka
+    100024: linki
+    100026: metal
+    100028: poklad
+    100030: smig
+    100032: smiglownik
+    100034: ster
+    100036: sterowiec1
+    100038: sterowiec2
+    100040: w1
+    100042: w1a
+    100044: w2
+    100046: w2a
+    100048: w3
+    100050: w3a
+    100052: w4
+    100054: w4a
+    400000: //RootNode
+    400002: domek1
+    400004: domek2
+    400006: domek3
+    400008: domek4_dac
+    400010: drewno1
+    400012: drewno2
+    400014: drewno2b
+    400016: drewno3
+    400018: kadlub
+    400020: kadlubb
+    400022: koncowka
+    400024: linki
+    400026: metal
+    400028: poklad
+    400030: smig
+    400032: smiglownik
+    400034: ster
+    400036: sterowiec1
+    400038: sterowiec2
+    400040: w1
+    400042: w1a
+    400044: w2
+    400046: w2a
+    400048: w3
+    400050: w3a
+    400052: w4
+    400054: w4a
+    2300000: domek1
+    2300002: domek2
+    2300004: domek3
+    2300006: domek4_dac
+    2300008: drewno1
+    2300010: drewno2
+    2300012: drewno2b
+    2300014: drewno3
+    2300016: kadlub
+    2300018: kadlubb
+    2300020: koncowka
+    2300022: linki
+    2300024: metal
+    2300026: poklad
+    2300028: smig
+    2300030: smiglownik
+    2300032: ster
+    2300034: sterowiec1
+    2300036: sterowiec2
+    2300038: w1
+    2300040: w1a
+    2300042: w2
+    2300044: w2a
+    2300046: w3
+    2300048: w3a
+    2300050: w4
+    2300052: w4a
+    3300000: domek1
+    3300002: domek2
+    3300004: domek3
+    3300006: domek4_dac
+    3300008: drewno1
+    3300010: drewno2
+    3300012: drewno2b
+    3300014: drewno3
+    3300016: kadlub
+    3300018: kadlubb
+    3300020: koncowka
+    3300022: linki
+    3300024: metal
+    3300026: poklad
+    3300028: smig
+    3300030: smiglownik
+    3300032: ster
+    3300034: sterowiec1
+    3300036: sterowiec2
+    3300038: w1
+    3300040: w1a
+    3300042: w2
+    3300044: w2a
+    3300046: w3
+    3300048: w3a
+    3300050: w4
+    3300052: w4a
+    4300000: w4
+    4300002: w3a
+    4300004: w3
+    4300006: w2a
+    4300008: w2
+    4300010: w4a
+    4300012: w1a
+    4300014: w1
+    4300016: linki
+    4300018: ster
+    4300020: drewno2b
+    4300022: metal
+    4300024: drewno2
+    4300026: koncowka
+    4300028: drewno3
+    4300030: drewno1
+    4300032: sterowiec2
+    4300034: sterowiec1
+    4300036: kadlub
+    4300038: domek4_dac
+    4300040: domek3
+    4300042: domek1
+    4300044: domek2
+    4300046: poklad
+    4300048: kadlubb
+    4300050: smig
+    4300052: smiglownik
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -174,12 +174,13 @@ public class MinigameHelper
         screenspace_position = inface.get_ScreenspacePosition();
         screenspace_velocity = inface.get_ScreenspacePosDelta();
 
-        Debug.Log(time_left);
+        //Debug.Log(time_left);
         timer_text.text = time_left.ToString();
         if (time_left <= 0)
         {
             timer.Stop();
             end();
+            return;
         }
 
         action_held = inface.get_Button();

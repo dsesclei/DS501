@@ -1,0 +1,398 @@
+fileFormatVersion: 2
+guid: a755e4f790508e443a84d08814f5ba55
+timeCreated: 1450425646
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Component_1
+    100002: Component_1 1
+    100004: Component_2
+    100006: Component_2 1
+    100008: Component_3
+    100010: Component_3 1
+    100012: Component_4
+    100014: Ears
+    100016: Ears 1
+    100018: eye_brow
+    100020: eye_brow 1
+    100022: Eyes_ball
+    100024: Eyes_ball 1
+    100026: Eyes_socket
+    100028: Eyes_socket 1
+    100030: HALF
+    100032: HALF 1
+    100034: head_base
+    100036: head_base 1
+    100038: ID118
+    100040: ID126
+    100042: ID134
+    100044: ID142
+    100046: ID154
+    100048: ID176
+    100050: ID182
+    100052: ID188
+    100054: ID228
+    100056: ID234
+    100058: ID24
+    100060: ID240
+    100062: ID246
+    100064: ID252
+    100066: ID258
+    100068: ID264
+    100070: ID270
+    100072: ID276
+    100074: ID288
+    100076: ID310
+    100078: ID316
+    100080: ID32
+    100082: ID322
+    100084: ID328
+    100086: ID340
+    100088: ID356
+    100090: ID362
+    100092: ID368
+    100094: ID38
+    100096: ID44
+    100098: ID50
+    100100: ID56
+    100102: ID62
+    100104: ID68
+    100106: ID74
+    100108: ID88
+    100110: instance_0
+    100112: instance_1
+    100114: instance_10
+    100116: instance_10 1
+    100118: instance_11
+    100120: instance_11 1
+    100122: instance_12
+    100124: instance_12 1
+    100126: instance_13
+    100128: instance_13 1
+    100130: instance_14
+    100132: instance_14 1
+    100134: instance_15
+    100136: instance_2
+    100138: instance_3
+    100140: instance_3 1
+    100142: instance_4
+    100144: instance_4 1
+    100146: instance_5
+    100148: instance_5 1
+    100150: instance_6
+    100152: instance_6 1
+    100154: instance_7
+    100156: instance_7 1
+    100158: instance_8
+    100160: instance_8 1
+    100162: instance_9
+    100164: instance_9 1
+    100166: Last Saved SketchUp View
+    100168: MAIN_FRAME
+    100170: MAIN_FRAME 1
+    100172: //RootNode
+    100174: Muzzle
+    100176: Muzzle 1
+    100178: ske66
+    100180: Thong
+    100182: Thong 1
+    100184: under_jaw_base
+    100186: under_jaw_base 1
+    400000: Component_1
+    400002: Component_1 1
+    400004: Component_2
+    400006: Component_2 1
+    400008: Component_3
+    400010: Component_3 1
+    400012: Component_4
+    400014: Ears
+    400016: Ears 1
+    400018: eye_brow
+    400020: eye_brow 1
+    400022: Eyes_ball
+    400024: Eyes_ball 1
+    400026: Eyes_socket
+    400028: Eyes_socket 1
+    400030: HALF
+    400032: HALF 1
+    400034: head_base
+    400036: head_base 1
+    400038: ID118
+    400040: ID126
+    400042: ID134
+    400044: ID142
+    400046: ID154
+    400048: ID176
+    400050: ID182
+    400052: ID188
+    400054: ID228
+    400056: ID234
+    400058: ID24
+    400060: ID240
+    400062: ID246
+    400064: ID252
+    400066: ID258
+    400068: ID264
+    400070: ID270
+    400072: ID276
+    400074: ID288
+    400076: ID310
+    400078: ID316
+    400080: ID32
+    400082: ID322
+    400084: ID328
+    400086: ID340
+    400088: ID356
+    400090: ID362
+    400092: ID368
+    400094: ID38
+    400096: ID44
+    400098: ID50
+    400100: ID56
+    400102: ID62
+    400104: ID68
+    400106: ID74
+    400108: ID88
+    400110: instance_0
+    400112: instance_1
+    400114: instance_10
+    400116: instance_10 1
+    400118: instance_11
+    400120: instance_11 1
+    400122: instance_12
+    400124: instance_12 1
+    400126: instance_13
+    400128: instance_13 1
+    400130: instance_14
+    400132: instance_14 1
+    400134: instance_15
+    400136: instance_2
+    400138: instance_3
+    400140: instance_3 1
+    400142: instance_4
+    400144: instance_4 1
+    400146: instance_5
+    400148: instance_5 1
+    400150: instance_6
+    400152: instance_6 1
+    400154: instance_7
+    400156: instance_7 1
+    400158: instance_8
+    400160: instance_8 1
+    400162: instance_9
+    400164: instance_9 1
+    400166: Last Saved SketchUp View
+    400168: MAIN_FRAME
+    400170: MAIN_FRAME 1
+    400172: //RootNode
+    400174: Muzzle
+    400176: Muzzle 1
+    400178: ske66
+    400180: Thong
+    400182: Thong 1
+    400184: under_jaw_base
+    400186: under_jaw_base 1
+    2300000: Component_1
+    2300002: Component_1 1
+    2300004: Component_3
+    2300006: Component_3 1
+    2300008: Ears
+    2300010: Ears 1
+    2300012: eye_brow
+    2300014: eye_brow 1
+    2300016: Eyes_ball
+    2300018: Eyes_ball 1
+    2300020: head_base
+    2300022: head_base 1
+    2300024: ID118
+    2300026: ID126
+    2300028: ID134
+    2300030: ID154
+    2300032: ID176
+    2300034: ID182
+    2300036: ID188
+    2300038: ID228
+    2300040: ID234
+    2300042: ID24
+    2300044: ID240
+    2300046: ID246
+    2300048: ID252
+    2300050: ID258
+    2300052: ID264
+    2300054: ID270
+    2300056: ID310
+    2300058: ID316
+    2300060: ID32
+    2300062: ID322
+    2300064: ID340
+    2300066: ID356
+    2300068: ID362
+    2300070: ID368
+    2300072: ID38
+    2300074: ID44
+    2300076: ID50
+    2300078: ID56
+    2300080: ID62
+    2300082: ID68
+    2300084: Thong
+    2300086: Thong 1
+    2300088: under_jaw_base
+    2300090: under_jaw_base 1
+    3300000: Component_1
+    3300002: Component_1 1
+    3300004: Component_3
+    3300006: Component_3 1
+    3300008: Ears
+    3300010: Ears 1
+    3300012: eye_brow
+    3300014: eye_brow 1
+    3300016: Eyes_ball
+    3300018: Eyes_ball 1
+    3300020: head_base
+    3300022: head_base 1
+    3300024: ID118
+    3300026: ID126
+    3300028: ID134
+    3300030: ID154
+    3300032: ID176
+    3300034: ID182
+    3300036: ID188
+    3300038: ID228
+    3300040: ID234
+    3300042: ID24
+    3300044: ID240
+    3300046: ID246
+    3300048: ID252
+    3300050: ID258
+    3300052: ID264
+    3300054: ID270
+    3300056: ID310
+    3300058: ID316
+    3300060: ID32
+    3300062: ID322
+    3300064: ID340
+    3300066: ID356
+    3300068: ID362
+    3300070: ID368
+    3300072: ID38
+    3300074: ID44
+    3300076: ID50
+    3300078: ID56
+    3300080: ID62
+    3300082: ID68
+    3300084: Thong
+    3300086: Thong 1
+    3300088: under_jaw_base
+    3300090: under_jaw_base 1
+    4300000: head_base
+    4300002: ID24
+    4300004: ID32
+    4300006: ID38
+    4300008: ID44
+    4300010: ID50
+    4300012: ID56
+    4300014: ID62
+    4300016: ID68
+    4300018: eye_brow
+    4300020: Component_3
+    4300022: Eyes_ball
+    4300024: ID118
+    4300026: ID126
+    4300028: ID134
+    4300030: Ears
+    4300032: ID154
+    4300034: Component_1
+    4300036: ID176
+    4300038: ID182
+    4300040: ID188
+    4300042: under_jaw_base
+    4300044: Thong
+    4300046: head_base
+    4300048: ID228
+    4300050: ID234
+    4300052: ID240
+    4300054: ID246
+    4300056: ID252
+    4300058: ID258
+    4300060: ID264
+    4300062: ID270
+    4300064: eye_brow
+    4300066: Component_3
+    4300068: Eyes_ball
+    4300070: ID310
+    4300072: ID316
+    4300074: ID322
+    4300076: Ears
+    4300078: ID340
+    4300080: Component_1
+    4300082: ID356
+    4300084: ID362
+    4300086: ID368
+    4300088: under_jaw_base
+    4300090: Thong
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
