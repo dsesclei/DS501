@@ -39,7 +39,8 @@ public class MinigameHelper
 
     // listeners
     public             Action onButton = () => { };
-    public             Action onMove   = () => { };
+	public             Action onButtonUp = () => { };
+	public             Action onMove   = () => { };
     public             Action onRotate = () => { };
     public Action<GameObject> onSelect = (GameObject obj) => { };
     public Action<GameObject> onDrag   = (GameObject obj) => { };
@@ -125,7 +126,7 @@ public class MinigameHelper
 
     }
 
-
+	private bool last_action_held = false;
     private bool action_processed = false;
     private Quaternion last_rotation;
     private Vector2 last_screenspace_position;
@@ -142,6 +143,7 @@ public class MinigameHelper
 
     public void go()
     {
+
         //register update function
         OnUpdate.register(this.update);
 
@@ -180,7 +182,7 @@ public class MinigameHelper
         {
             timer.Stop();
             end();
-            return;
+			return;
         }
 
         action_held = inface.get_Button();
@@ -201,6 +203,11 @@ public class MinigameHelper
         if (!action_held && !action)
             action_processed = false;
 
+		if (!action_held && last_action_held) {
+			onButtonUp();
+		}
+		last_action_held = action_held;
+
         // fire other events
         if (             last_rotation != rotation             )    onRotate();
         if ( last_screenspace_position != screenspace_position )    onMove();
@@ -214,7 +221,6 @@ public class MinigameHelper
 
     public void end()
     {
-
         OnUpdate.unregister(this.update);
 
         // cleanup
