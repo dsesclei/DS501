@@ -72,8 +72,8 @@ public class tutorial_select_three : Minigame {
             // check win state
             if (number_selected >= number_total)
             {
-                Debug.Log( "SUCCESS!" );
                 helper.success = true;
+                helper.end();
             }
         };
 

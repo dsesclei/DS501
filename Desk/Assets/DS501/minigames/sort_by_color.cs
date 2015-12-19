@@ -118,7 +118,11 @@ public class sort_by_color : Minigame
                     break;
                 }
             }
-            helper.success = !failure;
+            if (!failure)
+            {
+                helper.success = true;
+                helper.end();
+            }
         }
     }
 
