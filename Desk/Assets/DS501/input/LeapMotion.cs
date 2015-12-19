@@ -73,17 +73,19 @@ public class LeapMotion {
             new_rot_right_palm = new_right.GetPalmRotation();
             did_have_rot_right_palm = true;
 
-            Finger right_pointer = new_right.GetLeapHand().Finger(1);
-            if( right_pointer.IsValid )
+            FingerModel right_pointer = new_right.fingers[1];//GetLeapHand().Finger(1);
+            if( right_pointer.isActiveAndEnabled )
             {
-                new_pos_right_pointer = LeapToUnityWorld(right_pointer.TipPosition);
-                vel_right_pointer = right_pointer.TipVelocity.ToUnity();
+                new_pos_right_pointer = right_pointer.GetTipPosition();//LeapToUnityWorld(right_pointer.GetTipPosition());
+                //vel_right_pointer = new_pos_right_pointer - pos_right_pointer;
                 has_fingertip = true;
+
+                //Debug.Log(new_pos_right_pointer);
             }
             else
             {
                 has_fingertip = false;
-                Debug.Log("No Fingertip!");
+                Debug.Log("No Fingertip! " + new_right.GetLeapHand().Fingers.Count);
             }
         }
 

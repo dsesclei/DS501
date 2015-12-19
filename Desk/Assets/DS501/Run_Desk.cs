@@ -125,7 +125,7 @@ public class Run_Desk : MonoBehaviour {
 
     public virtual void MakeMinigames()
     {
-        Interface iface = interface_mouse_screenspace;
+        Interface iface = interface_leap;
 
         int repeat = 3;
 

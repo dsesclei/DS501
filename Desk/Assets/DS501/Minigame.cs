@@ -198,6 +198,12 @@ public class MinigameHelper
 
     public void update()
     {
+
+        //if( action_held )
+        //{
+            //GameObject.Find("cursor_quad").GetComponent<Material>().color = Color.red;
+        //}
+
         // update input method
         inface.update();
         rotation = inface.get_Rotation();

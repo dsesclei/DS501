@@ -53,7 +53,7 @@ public class Interface_Leap : Interface
         position = screenspace_position;
         pos_delta = LeapMotion.vel_right_palm; //TODO: what coord space?
 
-        action = LeapMotion.is_right_palm_pressed;
+        if( LeapMotion.is_right_palm_pressed ) action = !action;
         
 
         /*
@@ -66,7 +66,7 @@ public class Interface_Leap : Interface
         pos_delta = LeapMotion.vel_right_pointer; //TODO: what coord space?
 
         action = LeapMotion.is_pressed_right_pointer;
-         */
+        */
     }
 
 
@@ -76,6 +76,7 @@ public class Interface_Leap : Interface
 
         //Vector3 screenspace_position = Camera.main.WorldToScreenPoint(LeapMotion.pos_right_pointer);
         Vector3 screenspace_position = Camera.main.WorldToScreenPoint(LeapMotion.pos_right_palm);
+
         screenspace_position.z = 0;
         //Debug.Log("LEAP UPDATE CURSOR: " + screenspace_position);
         ScreenspaceCursor.update_position(screenspace_position);
