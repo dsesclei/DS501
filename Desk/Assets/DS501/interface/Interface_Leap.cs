@@ -10,6 +10,7 @@ public class Interface_Leap : Interface
     Vector2 pos_delta;
     bool action;
 
+    public string get_Name() { return "Leap";  }
     public Vector2 get_ScreenspacePosition() { return position; }
     public Vector2 get_ScreenspacePosDelta() { return pos_delta; }
     public Quaternion get_Rotation() { return rot_delta; }

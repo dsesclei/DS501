@@ -12,6 +12,7 @@ public class Interface_Mouse_Screenspace : Interface
     Vector2 pos_delta;
     bool left_click;
 
+    public string get_Name() { return "Mouse"; }
     public Vector2 get_ScreenspacePosition()    { return position;   }
     public Vector2 get_ScreenspacePosDelta()    { return pos_delta;  }
     public Quaternion get_Rotation()            { return rot_delta;  }

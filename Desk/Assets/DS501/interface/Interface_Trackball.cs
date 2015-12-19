@@ -10,6 +10,8 @@ public class Intercace_Trackball : Interface
     Vector2 pos_delta;
     bool left_click;
 
+
+    public string get_Name() { return "Trackball"; }
     public Vector2 get_ScreenspacePosition() { return position; }
     public Vector2 get_ScreenspacePosDelta() { return pos_delta; }
     public Quaternion get_Rotation() { return rot_delta; }

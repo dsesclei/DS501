@@ -10,6 +10,8 @@ public class Interface_Xbox : Interface
     Vector2 pos_delta;
     bool button;
 
+
+    public string get_Name() { return "Xbox"; }
     public Vector2 get_ScreenspacePosition() { return position; }
     public Vector2 get_ScreenspacePosDelta() { return pos_delta; }
     public Quaternion get_Rotation() { return rot_delta; }

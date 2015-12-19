@@ -37,6 +37,9 @@ public class MinigameHelper
     public Timer timer;
     public Text timer_text;
 
+    public double elapsed = -1;
+    public double start_time = -1;
+
     public GameObject selected = null;
 
     // listeners
@@ -81,6 +84,11 @@ public class MinigameHelper
         } while (Physics.Raycast(ray, depth));
 
         obj.transform.position = ray.GetPoint(depth);
+    }
+
+    public string get_InputName()
+    {
+        return inface.get_Name();
     }
 
     //public Vector3 ScreenspacePointToGamePlane(Vector3 screenspace_position)
@@ -144,6 +152,8 @@ public class MinigameHelper
     public bool has_ended = false;
     public bool has_started = false;
 
+    private bool have_seen_success = false;
+
     //private Plane gamePlane;
     public bool get_button_state_from_interface() //TODO: quick hack
     {
@@ -164,6 +174,7 @@ public class MinigameHelper
     {
         Debug.Log("  Start minigame: " + minigame.name);
 
+        start_time = misc.get_timestamp();
 
         //start timer
         timer_text = GameObject.Find("TimerText").GetComponent<Text>();
@@ -195,6 +206,12 @@ public class MinigameHelper
         action_held = inface.get_Button();
 
         if (!has_started) return;
+
+        if(!have_seen_success)
+        {
+            have_seen_success = true;
+            elapsed = misc.get_timestamp() - start_time;
+        }
 
         //Debug.Log(time_left);
         timer_text.text = time_left.ToString();

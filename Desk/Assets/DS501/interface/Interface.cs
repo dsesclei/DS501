@@ -14,5 +14,7 @@ public interface Interface
 
     Quaternion get_Rotation();
 
+    string get_Name();
+
     bool get_Button();
 }
