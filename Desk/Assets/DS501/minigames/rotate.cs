@@ -14,7 +14,7 @@ public class rotate : Minigame {
 	public override void init()
 	{
 		name = "test_rotate";
-		instructions = "Rotate the object on the right to match the one on the left";
+		instructions = "Rotate right\nmatch left";
 		
 		// show the cursor, if you want one
 		//helper.showCursor();
@@ -42,7 +42,7 @@ public class rotate : Minigame {
 		
 		helper.onRotate += () =>
 		{
-            Debug.Log(helper.rotation.eulerAngles);
+            //Debug.Log(helper.rotation.eulerAngles);
 			target.transform.Rotate(helper.rotation.eulerAngles, relativeTo: Space.World);
 		};
 		

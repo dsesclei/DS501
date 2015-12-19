@@ -30,6 +30,8 @@ public class MinigameHelper
     public bool        action_held  = false;    // is the action active? (Is the button held down?)
 
     public bool        success = false;
+    public string      instructions = "DO\nSOMETHING";
+    public string      name = "A MINIGAME";
 
     public decimal time_left;
     public Timer timer;
@@ -100,6 +102,9 @@ public class MinigameHelper
         this.inface = inface;
         inface.init();
 
+        name = minigame.name;
+        instructions = minigame.instructions;
+
 
         //gamePlane = new Plane( new Vector3( 0,0,1 ), 0.3f );
 
@@ -137,35 +142,45 @@ public class MinigameHelper
     private Interface inface = null; //TODO: pass one in in constructor?
     private Minigame minigame = null;
     public bool has_ended = false;
+    public bool has_started = false;
 
     //private Plane gamePlane;
+    public bool get_button_state_from_interface() //TODO: quick hack
+    {
+        return inface.get_Button();
+    }
 
+    public void prestart()
+    {
+        // init input
+        inface.on();
+        //update();
+
+        //register update function
+        OnUpdate.register(this.update);
+    }
 
     public void go()
     {
         Debug.Log("  Start minigame: " + minigame.name);
 
-        //register update function
-        OnUpdate.register(this.update);
 
         //start timer
         timer_text = GameObject.Find("TimerText").GetComponent<Text>();
-        Debug.Log(timer_text.text, timer_text);
+        //Debug.Log(timer_text.text, timer_text);
         time_left = this.minigame.duration;
         timer = new Timer(100); // Update timer every 0.1s
         timer.Elapsed += (object sender, ElapsedEventArgs e) =>
         {
             // Update the timer.
-            //time_left = time_left - 0.1m; //DEBUG//
+            time_left = time_left - 0.1m;
         };
         timer.Start();
 
         // zero the stored rotation
         rotation = new Quaternion();
 
-        // init input
-        inface.on();
-        //update();
+        has_started = true;
     }
 
     public void update()
@@ -176,18 +191,19 @@ public class MinigameHelper
 
         screenspace_position = inface.get_ScreenspacePosition();
         screenspace_velocity = inface.get_ScreenspacePosDelta();
+        
+        action_held = inface.get_Button();
+
+        if (!has_started) return;
 
         //Debug.Log(time_left);
         timer_text.text = time_left.ToString();
-        if (time_left <= 0)
+        if (time_left <= 0 && !has_ended)
         {
             timer.Stop();
             end();
-			return;
+            return;
         }
-
-        action_held = inface.get_Button();
-
         //Debug.Log("Actions etc: " + action +" : "+ action_held);
 
         // aciton is true only if action was clicked this frame
@@ -219,6 +235,7 @@ public class MinigameHelper
         last_rotation = rotation;
         last_screenspace_position = screenspace_position;
 
+
         minigame.update();
     }
 
@@ -242,7 +259,7 @@ public class MinigameHelper
         // show success / failure animation
         // TODO: 
         if ( success)    Debug.Log("SUCCESS");
-        else            Debug.Log("FAILURE");
+        else             Debug.Log("FAILURE");
 
         //kill circular reference
         this.minigame = null;
