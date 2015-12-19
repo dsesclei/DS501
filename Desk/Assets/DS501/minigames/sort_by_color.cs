@@ -8,9 +8,15 @@ public class sort_by_color : Minigame
     List<GameObject> objects = new List<GameObject>();
     Plane plane;
 
-    int total_objects = 6;
+    int total_objects = 4;
     float z_distance = 1.4f;
 
+    public override void init_text()
+    {
+        name = "sort_by_color";
+        instructions = "Sort the objects by color.";
+
+    }
     public override void init()
     {
         name = "sort_by_color";

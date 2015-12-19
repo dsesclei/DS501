@@ -9,12 +9,15 @@ public class rotate : Minigame {
 	Plane gamePlane;
 	
 	float z_distance = 1.0f;
-	
-	// need an init
-	public override void init()
+
+    // need an init
+    public override void init_text()
+    {
+        name = "test_rotate";
+        instructions = "Rotate right\nmatch left";
+    }
+    public override void init()
 	{
-		name = "test_rotate";
-		instructions = "Rotate right\nmatch left";
 		
 		// show the cursor, if you want one
 		//helper.showCursor();

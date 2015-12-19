@@ -7,15 +7,18 @@ public class avoid_game : Minigame {
 	List<GameObject> walls = new List<GameObject>();
 	Bounds bounds;
 
-	float z_distance = 1.4f;
+	float z_distance = 0.4f;
 	float gapWidth = 25;
-	float speed = 3.0f;
-	
-	// need an init
-	public override void init()
-	{
+	float speed = 4.0f;
+
+    // need an init
+    public override void init_text()
+    {
 		name = "test_avoid";
-		instructions = "Avoid the walls!";
+		instructions = "Avoid\nthe\nwalls!";
+    }
+    public override void init()
+	{
 		
 		// show the cursor, if you want one
 		helper.showCursor();
@@ -27,6 +30,7 @@ public class avoid_game : Minigame {
 		helper.success = true;
 		
 		addWall();
+
 	}
 	
 	public override void update()

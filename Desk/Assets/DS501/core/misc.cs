@@ -80,6 +80,26 @@ public class misc
 
         return pos_on_ray;
     }
+
+    public static List<T> shuffle<T>( List<T> array )
+    {
+        // inspired by: https://gist.github.com/polysmurf/7393396
+        // Loops through array
+        for (int i = array.Count - 1; i > 0; i--)
+        {
+            // Randomize a number between 0 and i (so that the range decreases each time)
+            int j = UnityEngine.Random.Range(0, i);
+
+            // Save the value of the current i, otherwise it'll overright when we swap the values
+            T temp = array[i];
+
+            // Swap the new and old values
+            array[i] = array[j];
+            array[j] = temp;
+        }
+
+        return array;
+    }
 }
 
 // Fisher-Yates Shuffle

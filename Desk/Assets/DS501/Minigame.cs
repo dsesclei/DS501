@@ -13,6 +13,7 @@ public abstract class Minigame
 
     public MinigameHelper helper;
 
+    public abstract void init_text();
     public abstract void init();
     public abstract void update();
     public abstract void destroy();
@@ -105,13 +106,12 @@ public class MinigameHelper
 
         this.minigame = minigame;
         minigame.helper = this;
-        minigame.init();
+        minigame.init_text();
+        name = minigame.name;
+        instructions = minigame.instructions;
 
         this.inface = inface;
         inface.init();
-
-        name = minigame.name;
-        instructions = minigame.instructions;
 
 
         //gamePlane = new Plane( new Vector3( 0,0,1 ), 0.3f );
@@ -173,6 +173,8 @@ public class MinigameHelper
     public void go()
     {
         Debug.Log("  Start minigame: " + minigame.name);
+
+        minigame.init();
 
         start_time = misc.get_timestamp();
 

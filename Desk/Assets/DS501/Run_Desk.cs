@@ -125,10 +125,19 @@ public class Run_Desk : MonoBehaviour {
 
     public virtual void MakeMinigames()
     {
-        //AddMinigame( new tutorial_select_three() );
-        AddMinigame( new rotate() );
-        //AddMinigame( new avoid_game() );
-        //AddMinigame( new sort_by_color() );
+        Interface iface = interface_mouse_screenspace;
+
+        int repeat = 3;
+
+        for (int i = 0; i < repeat; i++)
+        {
+            AddMinigame(new tutorial_select_three(), iface);
+            AddMinigame(new rotate(), iface);
+            AddMinigame(new avoid_game(), iface);
+            AddMinigame(new sort_by_color(), iface);
+        }
+
+        minigames = misc.shuffle<MinigameHelper>(minigames); 
     }
 
     public virtual void AddMinigame( Minigame game, Interface inface = null )

@@ -13,11 +13,15 @@ public class tutorial_select_three : Minigame {
     float z_distance = 1.4f;
 
     // need an init
-    public override void init()
+    public override void init_text()
     {
 
-        name = "test_select_red";
+        name = "Tutorial Select Three";
         instructions = "Select Them All";
+
+    }
+    public override void init()
+    {
 
         // show the cursor, if you want one
         helper.showCursor();
