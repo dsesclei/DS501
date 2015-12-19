@@ -9,7 +9,7 @@ public class avoid_game : Minigame {
 
 	float z_distance = 0.4f;
 	float gapWidth = 25;
-	float speed = 4.0f;
+	float speed = 10.0f;
 
     // need an init
     public override void init_text()
@@ -54,7 +54,7 @@ public class avoid_game : Minigame {
 	}
 	
 	public void addWall() {
-		float gapPos = UnityEngine.Random.Range(-50, 50);
+		float gapPos = UnityEngine.Random.Range(-25, 25);
 		GameObject left = GameObject.CreatePrimitive(PrimitiveType.Cube);
 		left.transform.localScale = new Vector3(250, 20, 1);
 		left.transform.position = new Vector3(gapPos - 125 - gapWidth / 2, 0, 100);
