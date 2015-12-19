@@ -239,6 +239,7 @@ public class Run_Desk : MonoBehaviour {
                     is_ended = true;
                     instructions_text.GetComponent<TextMesh>().text = "The\nEnd";
                     instructions_text.SetActive(true);
+                    Application.Quit();
                 }
                 else// if (!is_showing_instructions)
                 // show instructions for next game
