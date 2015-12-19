@@ -14,14 +14,11 @@ public class sort_by_color : Minigame
     public override void init_text()
     {
         name = "sort_by_color";
-        instructions = "Sort the objects by color.";
+        instructions = "Sort the\nobjects\nby color.";
 
     }
     public override void init()
     {
-        name = "sort_by_color";
-        instructions = "Sort the objects by color.";
-
         helper.showCursor();
 
         plane = helper.getGamePlane(depth: z_distance);
