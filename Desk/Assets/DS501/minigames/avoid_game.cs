@@ -46,6 +46,10 @@ public class avoid_game : Minigame {
 			wallBounds.center = wall.transform.position;
 			wallBounds.size = wall.transform.localScale;
 			helper.success = helper.success && !wallBounds.Intersects(bounds);
+            if (wallBounds.Intersects(bounds))
+            {
+                helper.end();
+            }
 		}
 
 		if (helper.success && walls[walls.Count - 1].transform.position.z < 60) {
